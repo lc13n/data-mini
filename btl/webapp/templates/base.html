@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OLAP - Kho Dữ Liệu Bán Hàng</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+  body { background: #f8f9fa; }
+  .navbar-brand { font-weight: bold; }
+  .sidebar { min-height: 100vh; background: #212529; padding-top: 1rem; }
+  .sidebar a { color: #adb5bd; display: block; padding: 8px 16px; text-decoration: none; border-radius: 4px; margin: 2px 8px; }
+  .sidebar a:hover, .sidebar a.active { background: #0d6efd; color: white; }
+  .sidebar .section-title { color: #6c757d; font-size: 0.75rem; text-transform: uppercase; padding: 12px 16px 4px; letter-spacing: 1px; }
+  .content { padding: 24px; }
+  table { font-size: 0.88rem; }
+  .badge-fact { background: #0d6efd; }
+  .badge-dim  { background: #198754; }
+</style>
+</head>
+<body>
+<div class="d-flex">
+  <!-- Sidebar -->
+  <div class="sidebar" style="width:220px; min-width:220px;">
+    <div class="px-3 py-2 mb-2">
+      <span class="text-white fw-bold">🗄 OLAP Demo</span><br>
+      <small class="text-secondary">DW_BanHang</small>
+    </div>
+
+    <div class="section-title">Thao tác OLAP</div>
+    <a href="/drilldown" class="{{ 'active' if request.path=='/drilldown' }}">🔽 Drill Down</a>
+    <a href="/rollup"    class="{{ 'active' if request.path=='/rollup' }}">🔼 Roll Up</a>
+    <a href="/slice"     class="{{ 'active' if request.path=='/slice' }}">✂ Slice</a>
+    <a href="/dice"      class="{{ 'active' if request.path=='/dice' }}">🎲 Dice</a>
+    <a href="/pivot"     class="{{ 'active' if request.path=='/pivot' }}">🔄 Pivot</a>
+
+    <div class="section-title mt-3">9 Câu nghiệp vụ</div>
+    {% for i in range(1,10) %}
+    <a href="/query/{{ i }}">Q{{ i }}</a>
+    {% endfor %}
+
+    <div class="section-title mt-3">Trang chủ</div>
+    <a href="/">🏠 Tổng quan</a>
+  </div>
+
+  <!-- Main content -->
+  <div class="content flex-grow-1">
+    {% block content %}{% endblock %}
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

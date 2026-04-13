@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block content %}
+<h4 class="mb-4">🗄 Kho Dữ Liệu Bán Hàng — OLAP Dashboard</h4>
+
+<div class="row g-3 mb-4">
+  <div class="col-md-3">
+    <div class="card border-primary">
+      <div class="card-body text-center">
+        <h2 class="text-primary">2</h2>
+        <div class="text-muted">Fact Tables</div>
+        <small>Fact_BanHang, Fact_Kho</small>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card border-success">
+      <div class="card-body text-center">
+        <h2 class="text-success">5</h2>
+        <div class="text-muted">Dimension Tables</div>
+        <small>KH, MH, CH, VPDD, ThoiGian</small>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card border-warning">
+      <div class="card-body text-center">
+        <h2 class="text-warning">3</h2>
+        <div class="text-muted">OLAP Cubes</div>
+        <small>DoanhThu, TonKho, KhachHang</small>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="card border-info">
+      <div class="card-body text-center">
+        <h2 class="text-info">5</h2>
+        <div class="text-muted">Thao tác OLAP</div>
+        <small>Drill↓ Roll↑ Slice Dice Pivot</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-3">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header fw-bold">📊 Thao tác OLAP</div>
+      <div class="card-body">
+        <table class="table table-sm">
+          <thead><tr><th>Thao tác</th><th>Mô tả</th></tr></thead>
+          <tbody>
+            <tr><td><a href="/drilldown">🔽 Drill Down</a></td><td>Doanh thu: Năm → Quý → Tháng</td></tr>
+            <tr><td><a href="/rollup">🔼 Roll Up</a></td><td>Tồn kho: Cửa hàng → TP → Bang</td></tr>
+            <tr><td><a href="/slice">✂ Slice</a></td><td>Cắt 1 chiều: Loại KH / Năm / Kích cỡ</td></tr>
+            <tr><td><a href="/dice">🎲 Dice</a></td><td>Cắt nhiều chiều: TP + MH + Năm</td></tr>
+            <tr><td><a href="/pivot">🔄 Pivot</a></td><td>Xoay: Doanh thu Loại KH × Năm</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header fw-bold">📋 9 Câu truy vấn nghiệp vụ</div>
+      <div class="card-body">
+        <table class="table table-sm">
+          <tbody>
+            <tr><td><a href="/query/1">Q1</a></td><td>Cửa hàng + mặt hàng lưu kho</td></tr>
+            <tr><td><a href="/query/2">Q2</a></td><td>Đơn hàng của một khách hàng</td></tr>
+            <tr><td><a href="/query/3">Q3</a></td><td>Cửa hàng bán MH do 1 KH đặt</td></tr>
+            <tr><td><a href="/query/4">Q4</a></td><td>VP + TP + Bang lưu MH > ngưỡng</td></tr>
+            <tr><td><a href="/query/5">Q5</a></td><td>MH đặt + CH bán (theo KH)</td></tr>
+            <tr><td><a href="/query/6">Q6</a></td><td>TP + Bang KH sinh sống</td></tr>
+            <tr><td><a href="/query/7">Q7</a></td><td>Tồn kho MH tại các CH ở 1 TP</td></tr>
+            <tr><td><a href="/query/8">Q8</a></td><td>MH + KH + CH + TP của 1 đơn</td></tr>
+            <tr><td><a href="/query/9">Q9</a></td><td>Thống kê KH du lịch / bưu điện</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% set q_desc = {
+  1: 'Tất cả cửa hàng + thành phố, bang, SĐT + mặt hàng bán ở kho đó',
+  2: 'Tất cả đơn hàng + tên KH + ngày đặt của một khách hàng',
+  3: 'Cửa hàng + tên TP + SĐT có bán MH được đặt bởi 1 KH',
+  4: 'Địa chỉ VP + tên TP + bang lưu kho MH với SL > ngưỡng',
+  5: 'Mặt hàng đặt + mô tả + mã CH + tên TP bán MH đó (theo KH)',
+  6: 'Thành phố và bang mà một KH sinh sống',
+  7: 'Tồn kho 1 MH tại tất cả CH ở 1 TP cụ thể',
+  8: 'MH + SL đặt + KH + CH + TP của một đơn đặt hàng',
+  9: 'Thống kê KH du lịch, KH bưu điện, KH cả hai loại'
+} %}
+
+<h5>Q{{ qid }}: {{ q_desc[qid] }}</h5>
+
+<!-- Bộ lọc tham số -->
+<form method="get" class="row g-2 mb-3 p-2 bg-light rounded">
+  {% if qid in [2,3,5,6,8] %}
+  <div class="col-auto">
+    <label class="form-label mb-0 small">Mã KH</label>
+    <input type="text" name="makh" value="{{ makh }}" class="form-control form-control-sm" style="width:90px">
+  </div>
+  {% endif %}
+  {% if qid in [4,7] %}
+  <div class="col-auto">
+    <label class="form-label mb-0 small">Mã MH</label>
+    <input type="text" name="mamh" value="{{ mamh }}" class="form-control form-control-sm" style="width:90px">
+  </div>
+  {% endif %}
+  {% if qid == 7 %}
+  <div class="col-auto">
+    <label class="form-label mb-0 small">Mã TP</label>
+    <input type="text" name="matp" value="{{ matp }}" class="form-control form-control-sm" style="width:80px">
+  </div>
+  {% endif %}
+  {% if qid == 4 %}
+  <div class="col-auto">
+    <label class="form-label mb-0 small">Ngưỡng SL</label>
+    <input type="number" name="nguong" value="{{ nguong }}" class="form-control form-control-sm" style="width:90px">
+  </div>
+  {% endif %}
+  <div class="col-auto align-self-end">
+    <button type="submit" class="btn btn-sm btn-primary">Chạy</button>
+  </div>
+</form>
+
+<div class="card">
+  <div class="card-body">
+    <p class="text-muted small">Kết quả: <strong>{{ rows|length }}</strong> dòng</p>
+    {% if rows %}
+    <div style="overflow-x:auto">
+      <table class="table table-bordered table-hover table-sm">
+        <thead class="table-dark">
+          <tr>{% for c in cols %}<th>{{ c }}</th>{% endfor %}</tr>
+        </thead>
+        <tbody>
+          {% for r in rows %}
+          <tr>{% for c in cols %}<td>{{ r[c] }}</td>{% endfor %}</tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div class="alert alert-warning">Không có kết quả.</div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

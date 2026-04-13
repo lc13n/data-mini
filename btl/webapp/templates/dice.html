@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block content %}
+<h5>🎲 Dice — Cắt nhiều chiều đồng thời</h5>
+
+<form method="get" class="row g-2 mb-3">
+  <div class="col-auto">
+    <label class="form-label mb-0 small">Thành phố</label>
+    <select name="matp" class="form-select form-select-sm">
+      <option value="">-- Tất cả --</option>
+      {% for r in tp_list %}
+      <option value="{{ r['MaThanhPhoCH'] }}" {{ 'selected' if sel_matp==r['MaThanhPhoCH'] }}>
+        {{ r['TenThanhPho'] }}
+      </option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="col-auto">
+    <label class="form-label mb-0 small">Mặt hàng</label>
+    <select name="mamh" class="form-select form-select-sm">
+      <option value="">-- Tất cả --</option>
+      {% for r in mh_list %}
+      <option value="{{ r['MaMatHang'] }}" {{ 'selected' if sel_mamh==r['MaMatHang'] }}>
+        {{ r['MaMatHang'] }} - {{ r['MoTaMatHang'][:20] }}
+      </option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="col-auto">
+    <label class="form-label mb-0 small">Năm từ</label>
+    <select name="nam_f" class="form-select form-select-sm">
+      <option value="">--</option>
+      {% for r in nam_list %}
+      <option value="{{ r['Nam'] }}" {{ 'selected' if sel_namf==r['Nam'] }}>{{ r['Nam'] }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="col-auto">
+    <label class="form-label mb-0 small">Năm đến</label>
+    <select name="nam_t" class="form-select form-select-sm">
+      <option value="">--</option>
+      {% for r in nam_list %}
+      <option value="{{ r['Nam'] }}" {{ 'selected' if sel_namt==r['Nam'] }}>{{ r['Nam'] }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="col-auto align-self-end">
+    <button type="submit" class="btn btn-sm btn-primary">Lọc</button>
+  </div>
+</form>
+
+<div class="card">
+  <div class="card-body">
+    <p class="text-muted small">Kết quả: {{ rows|length }} dòng</p>
+    <table class="table table-bordered table-hover table-sm">
+      <thead class="table-dark">
+        <tr>{% for c in cols %}<th>{{ c }}</th>{% endfor %}</tr>
+      </thead>
+      <tbody>
+        {% for r in rows %}
+        <tr>
+          {% for c in cols %}
+          <td>{{ "{:,}".format(r[c]) if c=='TonKho' else r[c] }}</td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

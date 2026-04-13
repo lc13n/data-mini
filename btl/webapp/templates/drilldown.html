@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+<h5>🔽 Drill Down — Doanh thu theo Thời gian</h5>
+<nav aria-label="breadcrumb" class="mb-3">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item {{ 'active' if level=='nam' }}">
+      {% if level != 'nam' %}<a href="/drilldown">Năm</a>{% else %}Năm{% endif %}
+    </li>
+    {% if level in ['quy','thang'] %}
+    <li class="breadcrumb-item {{ 'active' if level=='quy' }}">
+      {% if level == 'thang' %}<a href="/drilldown?nam={{ nam }}">Quý (Năm {{ nam }})</a>
+      {% else %}Quý (Năm {{ nam }}){% endif %}
+    </li>
+    {% endif %}
+    {% if level == 'thang' %}
+    <li class="breadcrumb-item active">Tháng (Q{{ quy }})</li>
+    {% endif %}
+  </ol>
+</nav>
+
+<div class="card">
+  <div class="card-body">
+    <table class="table table-bordered table-hover table-sm">
+      <thead class="table-dark">
+        <tr>{% for c in cols %}<th>{{ c }}</th>{% endfor %}
+        {% if level == 'nam' %}<th>Hành động</th>{% endif %}
+        {% if level == 'quy' %}<th>Hành động</th>{% endif %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in rows %}
+        <tr>
+          {% for c in cols %}
+          <td>
+            {% set v = r[c] %}
+            {% if c in ['DoanhThu'] %}
+              {{ "{:,.0f}".format(v) }} VNĐ
+            {% else %}
+              {{ v }}
+            {% endif %}
+          </td>
+          {% endfor %}
+          {% if level == 'nam' %}
+          <td><a href="/drilldown?nam={{ r['Nam'] }}" class="btn btn-sm btn-outline-primary">🔽 Xem Quý</a></td>
+          {% endif %}
+          {% if level == 'quy' %}
+          <td><a href="/drilldown?nam={{ r['Nam'] }}&quy={{ r['Quy'] }}" class="btn btn-sm btn-outline-primary">🔽 Xem Tháng</a></td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}

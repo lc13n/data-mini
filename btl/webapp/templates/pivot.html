@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<h5>🔄 Pivot — Doanh thu theo Loại Khách Hàng × Năm</h5>
+<p class="text-muted small">Mỗi cột = 1 loại khách hàng. Mỗi dòng = 1 năm.</p>
+
+<div class="card">
+  <div class="card-body">
+    <table class="table table-bordered table-hover">
+      <thead class="table-dark">
+        <tr>{% for c in cols %}<th>{{ c }}</th>{% endfor %}</tr>
+      </thead>
+      <tbody>
+        {% for r in rows %}
+        <tr>
+          {% for c in cols %}
+          <td>
+            {% if c == 'Nam' %}
+              <strong>{{ r[c] }}</strong>
+            {% else %}
+              {{ "{:,.0f}".format(r[c]) }}
+            {% endif %}
+          </td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="mt-3 p-3 bg-light rounded small">
+  <strong>Giải thích:</strong>
+  Bảng Pivot xoay chiều <em>Loại KH</em> từ dòng thành cột, giúp so sánh doanh thu
+  giữa các loại khách hàng theo từng năm chỉ trong 1 bảng.
+</div>
+{% endblock %}
