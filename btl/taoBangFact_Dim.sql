@@ -1,8 +1,7 @@
-﻿USE master;
+USE master;
 GO
 IF EXISTS (SELECT name FROM sys.databases WHERE name = N'DW_BanHang')
 BEGIN
-    -- Ngắt các kết nối đang hoạt động để có thể xóa database
     ALTER DATABASE DW_BanHang SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
     DROP DATABASE DW_BanHang;
 END
@@ -13,68 +12,85 @@ GO
 USE DW_BanHang;
 GO
 
--- 1. Dim_ThoiGian
+-- ============================================================
+-- CHIỀU 1: Dim_ThoiGian
+-- Theo sơ đồ: maThoiGian, thang, quy, nam
+-- ============================================================
 CREATE TABLE Dim_ThoiGian (
-    TimeKey INT IDENTITY(1,1) PRIMARY KEY,
-    Thang INT,
-    Quy INT,
-    Nam INT
+    maThoiGian  INT IDENTITY(1,1) PRIMARY KEY,
+    thang       INT,
+    quy         INT,
+    nam         INT
 );
 
--- 2. Dim_VPDD
+-- ============================================================
+-- CHIỀU 2: Dim_VPDD (Văn phòng đại diện / Thành phố)
+-- Theo sơ đồ: MaThanhPho, TenThanhPho, Bang, DiaChi
+-- ============================================================
 CREATE TABLE Dim_VPDD (
-    MaThanhPho VARCHAR(10) PRIMARY KEY,
+    MaThanhPho  VARCHAR(10) PRIMARY KEY,
     TenThanhPho NVARCHAR(100),
-    Bang NVARCHAR(50),
-    DiaChi NVARCHAR(255)
+    Bang        NVARCHAR(50),
+    DiaChi      NVARCHAR(255)
 );
 
--- 3. Dim_KhachHang
+-- ============================================================
+-- CHIỀU 3: Dim_KhachHang
+-- Theo sơ đồ: MaKH, TenKhachHang, MaThanhPho, LoaiKhachHang
+-- ============================================================
 CREATE TABLE Dim_KhachHang (
-    MaKH VARCHAR(10) PRIMARY KEY,
-    TenKhachHang NVARCHAR(100),
-    MaThanhPho VARCHAR(10),
-    LoaiKhachHang NVARCHAR(50)
+    MaKH            VARCHAR(10) PRIMARY KEY,
+    TenKhachHang    NVARCHAR(100),
+    MaThanhPho      VARCHAR(10),
+    LoaiKhachHang   NVARCHAR(50)
 );
 
--- 4. Dim_MatHang
+-- ============================================================
+-- CHIỀU 4: Dim_MatHang
+-- Theo sơ đồ: MaMH, MoTa, KichCo, TrongLuong, DonGia
+-- ============================================================
 CREATE TABLE Dim_MatHang (
-    MaMH VARCHAR(10) PRIMARY KEY,
-    MoTa NVARCHAR(MAX),
-    KichCo NVARCHAR(50),
-    TrongLuong FLOAT,
-    DonGia DECIMAL(18, 2)
+    MaMH        VARCHAR(10) PRIMARY KEY,
+    MoTa        NVARCHAR(MAX),
+    KichCo      NVARCHAR(50),
+    TrongLuong  FLOAT,
+    DonGia      DECIMAL(18, 2)
 );
 
--- 5. Dim_CuaHang
+-- ============================================================
+-- CHIỀU 5: Dim_CuaHang
+-- Theo sơ đồ: MaCuaHang, MaThanhPho, Bang, SDT
+-- ============================================================
 CREATE TABLE Dim_CuaHang (
-    MaCuaHang VARCHAR(10) PRIMARY KEY,
-    MaThanhPho VARCHAR(10) REFERENCES Dim_VPDD(MaThanhPho),
-    Bang NVARCHAR(50),
-    SDT VARCHAR(20)
-	
+    MaCuaHang   VARCHAR(10) PRIMARY KEY,
+    MaThanhPho  VARCHAR(10) REFERENCES Dim_VPDD(MaThanhPho),
+    Bang        NVARCHAR(50),
+    SDT         VARCHAR(20)
 );
 
--- 6. Fact_BanHang (grain: 1 dòng / (đơn hàng × mặt hàng))
--- MaDon là degenerate dimension — không cần Dim_DonHang riêng
--- NgayDatHang lưu ngày chính xác để phục vụ Q2
+-- ============================================================
+-- FACT 1: Fact_BanHang
+-- Theo sơ đồ: MaKhachHang, MaMatHang, MaThanhPho, MaThoiGian
+--             + SoLuongBan, DoanhThu (độ đo)
+-- ============================================================
 CREATE TABLE Fact_BanHang (
-    MaDon       VARCHAR(10),                                  -- Degenerate dimension
-    MaKhachHang VARCHAR(10) REFERENCES Dim_KhachHang(MaKH),
-    MaMatHang   VARCHAR(10) REFERENCES Dim_MatHang(MaMH),
-    TimeKey     INT         REFERENCES Dim_ThoiGian(TimeKey),
-    NgayDatHang DATE,                                         -- Ngày đặt chính xác
+    MaKhachHang VARCHAR(10)     REFERENCES Dim_KhachHang(MaKH),
+    MaMatHang   VARCHAR(10)     REFERENCES Dim_MatHang(MaMH),
+    MaThanhPho  VARCHAR(10)     REFERENCES Dim_VPDD(MaThanhPho),
+    MaThoiGian  INT             REFERENCES Dim_ThoiGian(maThoiGian),
     SoLuongBan  INT,
     DoanhThu    DECIMAL(18, 2),
-    PRIMARY KEY (MaDon, MaMatHang)
+    PRIMARY KEY (MaKhachHang, MaMatHang, MaThanhPho, MaThoiGian)
 );
 
--- 7. Fact_Kho
+-- ============================================================
+-- FACT 2: Fact_Kho
+-- Theo sơ đồ: MaMatHang, MaCuaHang + SoLuongTonKho (độ đo)
+-- ============================================================
 CREATE TABLE Fact_Kho (
-    MaMatHang VARCHAR(10) REFERENCES Dim_MatHang(MaMH),
-    MaCuaHang VARCHAR(10) REFERENCES Dim_CuaHang(MaCuaHang),
-	TimeKey INT REFERENCES Dim_ThoiGian(TimeKey),
-    SoLuongTonKho INT,
-    PRIMARY KEY (MaMatHang, MaCuaHang, TimeKey)
+    MaMatHang       VARCHAR(10) REFERENCES Dim_MatHang(MaMH),
+    MaCuaHang       VARCHAR(10) REFERENCES Dim_CuaHang(MaCuaHang),
+    SoLuongTonKho   INT,
+    PRIMARY KEY (MaMatHang, MaCuaHang)
 );
 GO

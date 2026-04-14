@@ -1,0 +1,169 @@
+﻿============================================================
+FILE: B├ái tß║¡p lß╗¢n KDL (1).pdf
+============================================================
+B├ÇI Tß║¼P Lß╗ÜN M├öN KHO Dß╗« LIß╗åU 
+
+M├┤ tß║ú y├¬u cß║ºu cß╗ºa b├ái to├ín:  Thiß║┐t kß║┐ v├á c├ái ─æß║╖t  mß╗Öt kho dß╗»  liß╗çu  cho mß╗Öt hß╗ç  thß╗æng xß╗¡ l├╜ ─æß║╖t 
+h├áng cß╗ºa kh├ích h├áng  cho mß╗Öt c├┤ng  ty sß╗¡ dß╗Ñng MS SQL Server v├á Oracle vß╗¢i nhß╗»ng th├┤ng tin 
+nh╞░ sau. 
+
+Hß╗ç thß╗æng kho dß╗» liß╗çu ─æ╞░ß╗úc x├óy dß╗▒ng cho mß╗Öt doanh nghiß╗çp bao gß╗ôm nhiß╗üu cß╗¡a h├áng nß║▒m rß║úi r├íc 
+ß╗ƒ nhiß╗üu th├ánh phß╗æ v├á bang kh├íc nhau. Mß╗ùi cß╗¡a h├áng c├│ mß╗Öt sß╗æ l╞░ß╗úng c├íc mß║╖t h├áng vß╗¢i sß╗æ l╞░ß╗úng 
+h├áng kh├íc nhau. Th├¬m nß╗»a, doanh nghiß╗çp c┼⌐ng l╞░u trß╗» th├┤ng tin vß╗ü c├íc kh├ích h├áng bao gß╗ôm hai 
+loß║íi:  loß║íi  thß╗⌐  nhß║Ñt  l├á  kh├ích  du  lß╗ïch  th╞░ß╗¥ng  ─æ╞░ß╗úc  dß║½n  ─æß║┐n  bß╗ƒi  c├íc  h╞░ß╗¢ng  dß║½n  vi├¬n  c├íc  ─æo├án  du 
+lß╗ïch, loß║íi hai bao gß╗ôm nhß╗»ng kh├ích h├áng ─æß║╖t h├áng qua ─æ╞░ß╗¥ng b╞░u ─æiß╗çn. Th├ánh phß╗æ sinh sß╗æng cß╗ºa 
+c├íc kh├ích h├áng, c├╣ng vß╗¢i dß╗» liß╗çu vß╗ü ─æ╞ín ─æß║╖t h├áng ─æß║ºu ti├¬n cß╗ºa kh├ích h├áng ─æ╞░ß╗úc l╞░u lß║íi trong hß╗ç 
+thß╗æng hiß╗çn tß║íi. Mß╗ùi kh├ích h├áng chß╗ë sß╗æng ß╗ƒ mß╗Öt th├ánh phß╗æ v├á doanh nghiß╗çp ─æ├│ sß║╜ cß╗æ gß║»ng ─æ├íp ß╗⌐ng 
+c├íc mß║╖t h├áng trong ─æ╞ín h├áng cß╗ºa kh├ích bß║▒ng c├ích lß║Ñy tß╗½ kho ß╗ƒ th├ánh phß╗æ m├á kh├ích h├áng ─æ├│ sinh 
+sß╗æng. Mß╗ùi ─æ╞ín ─æß║╖t h├áng cß╗ºa kh├ích c├│ thß╗â ─æß║╖t thoß║úi m├íi vß╗ü sß╗æ l╞░ß╗úng v├á sß╗æ c├íc mß║╖t h├áng v├á mß╗ùi 
+─æ╞ín ─æß║╖t h├áng ─æ╞░ß╗úc x├íc ─æß╗ïnh bß╗ƒi mß╗Öt m├ú sß╗æ ─æ╞ín ─æß║╖t h├áng. 
+
+Vß╗ï tr├¡ cß╗ºa c├íc cß╗¡a h├áng c┼⌐ng ─æ╞░ß╗úc l╞░u trß╗». Mß╗ùi cß╗¡a h├áng nß║▒m tß║íi mß╗Öt th├ánh phß╗æ v├á c├│ nhiß╗üu cß╗¡a 
+h├áng trong mß╗Öt th├ánh phß╗æ. Mß╗ùi th├ánh phß╗æ c├│ mß╗Öt v─ân ph├▓ng ─æß║íi diß╗çn ─æß╗â quß║ún l├╜ tß║Ñt cß║ú c├íc cß╗¡a 
+h├áng cß╗ºa th├ánh phß╗æ ─æ├│. Mß╗Ñc ti├¬u cß╗ºa doanh nghiß╗çp n├áy l├á ─æ├íp ß╗⌐ng ─æß║ºy ─æß╗º c├íc y├¬u cß║ºu cß╗ºa kh├ích 
+h├áng tß╗½ nhß╗»ng cß╗¡a h├áng nß║▒m trong th├ánh phß╗æ m├á kh├ích h├áng sinh sß╗æng. Nß║┐u nhß╗»ng y├¬u cß║ºu ─æ├│ 
+kh├┤ng thß╗â ─æ├íp ß╗⌐ng th├¼ c├┤ng ty sß║╜ chuyß╗ân y├¬u cß║ºu tß╗¢i c├íc th├ánh phß╗æ ─æß║┐n khi mß║╖t h├áng c├│ ─æß╗º ─æß╗â 
+cung cß║Ñp. 
+
+Mß╗Öt sß╗æ th├┤ng tin xß╗¡ l├╜ l├á rß║Ñt quan trß╗ìng ─æß╗æi vß╗¢i doanh nghiß╗çp n├áy. V├¡ dß╗Ñ, tß╗òng sß╗æ l╞░ß╗úng mß╗ùi mß║╖t 
+h├áng  ─æ╞░ß╗úc  l╞░u  trß╗»  tß║íi  mß╗ùi  th├ánh  phß╗æ.  Sau  mß╗ùi  lß║ºn  mß╗Öt  mß║╖t  h├áng  ─æ╞░ß╗úc  ph├ón  phß╗æi  (─æ╞░ß╗úc  b├ín), 
+doanh nghiß╗çp n├áy cß║ºn biß║┐t tß╗òng sß╗æ l╞░ß╗úng mß╗ùi mß║╖t h├áng c├▓n lß║íi tß║íi tß║Ñt cß║ú c├íc cß╗¡a h├áng trong mß╗Öt 
+th├ánh phß╗æ. 
+
+L╞░ß╗úc ─æß╗ô quan hß╗ç cß╗ºa hß╗ç thß╗æng c╞í sß╗ƒ dß╗» liß╗çu quan hß╗ç hiß╗çn tß║íi cß╗ºa doanh nghiß╗çp n├áy nh╞░ sau: 
+
+C╞í sß╗ƒ dß╗» liß╗çu V─ân ph├▓ng ─æß║íi diß╗çn bao gß╗ôm nhß╗»ng quan hß╗ç vß╗¢i c├íc l╞░ß╗úc ─æß╗ô nh╞░ sau: 
+
+Kh├ích h├áng (M├ú KH, T├¬n KH, M├ú Th├ánh phß╗æ, Ng├áy ─æß║╖t h├áng ─æß║ºu ti├¬n) 
+
+Kh├ích h├áng du lß╗ïch (*M├ú KH, H╞░ß╗¢ng dß║½n vi├¬n du lß╗ïch, Thß╗¥i gian) 
+
+Kh├ích h├áng b╞░u ─æiß╗çn (* M├ú KH, ─Éß╗ïa chß╗ë b╞░u ─æiß╗çn, Thß╗¥i gian) 
+
+C╞í sß╗ƒ dß╗» liß╗çu B├ín h├áng gß╗ôm nhß╗»ng quan hß╗ç vß╗¢i l╞░ß╗úc ─æß╗ô nh╞░ sau: 
+
+V─ân ph├▓ng ─æß║íi diß╗çn (M├ú Th├ánh phß╗æ, T├¬n Th├ánh phß╗æ, ─Éß╗ïa chß╗ë VP, Bang, Thß╗¥i gian) 
+
+Cß╗¡a h├áng (M├ú cß╗¡a h├áng, * M├ú Th├ánh phß╗æ, Sß╗æ ─æiß╗çn thoß║íi, Thß╗¥i gian) 
+
+Mß║╖t h├áng (M├ú MH, M├┤ tß║ú, K├¡ch cß╗í, Trß╗ìng l╞░ß╗úng, Gi├í, Thß╗¥i gian) 
+
+Mß║╖t h├áng_─æ╞░ß╗úc l╞░u trß╗» (* M├ú cß╗¡a h├áng, * M├ú mß║╖t h├áng, Sß╗æ l╞░ß╗úng trong kho, Thß╗¥i gian) 
+
+─É╞ín ─æß║╖t h├áng (M├ú ─æ╞ín, Ng├áy ─æß║╖t h├áng, M├ú Kh├ích h├áng) 
+
+Mß║╖t h├áng ─æ╞░ß╗úc ─æß║╖t (* M├ú ─æ╞ín, * M├ú mß║╖t h├áng, Sß╗æ l╞░ß╗úng ─æß║╖t, Gi├í ─æß║╖t, Thß╗¥i gian) 
+
+Trong  ─æ├│  nhß╗»ng  thuß╗Öc  t├¡nh  ─æ╞░ß╗úc  gß║ích  ch├ón  l├á  kh├│a  ch├¡nh  v├á  thuß╗Öc  t├¡nh  ─æ├ính  dß║Ñu  (*)  l├á  kh├│a 
+ngoß║íi. 
+
+Y├¬u cß║ºu nghiß╗çp vß╗Ñ: 
+
+─Éß╗â ─æ├íp ß╗⌐ng ─æ╞░ß╗úc nhu cß║ºu cß╗ºa kh├ích h├áng, hß╗ç thß╗æng kho dß╗» liß╗çu tr├¡ch lß╗ìc dß╗» liß╗çu tß╗½ hai c╞í sß╗ƒ dß╗» 
+liß╗çu hiß╗çn c├│ ─æß╗â cho v├áo kho dß╗» liß╗çu v├á cung cß║Ñp c├íc xß╗¡ l├╜ ph├ón t├¡ch trß╗▒c tuyß║┐n vß╗¢i c├íc thao t├íc 
+cuß╗Ön l├¬n, khoan xuß╗æng, chß╗ìn v├á chiß║┐u dß╗▒a tr├¬n nhß╗»ng y├¬u cß║ºu chß╗ìn lß╗▒a cß╗ºa kh├ích h├áng v├á c├íc 
+bß║úng theo chiß╗üu ─æß╗â ─æ├íp ß╗⌐ng y├¬u cß║ºu cß╗ºa ng╞░ß╗¥i sß╗¡ dß╗Ñng. Thiß║┐t lß║¡p mß╗Öt chiß╗üu thß╗¥i gian, hß╗ç thß╗æng 
+sß║╜ sinh mß╗Öt b├ío c├ío Ph├ón t├¡ch trß╗▒c tuyß║┐n cho nhß╗»ng y├¬u cß║ºu sau: 
+
+1. T├¼m tß║Ñt cß║ú c├íc cß╗¡a h├áng c├╣ng vß╗¢i th├ánh phß╗æ, bang, sß╗æ ─æiß╗çn thoß║íi, m├┤ tß║ú, k├¡ch cß╗í, trß╗ìng l╞░ß╗úng 
+v├á ─æ╞ín gi├í cß╗ºa tß║Ñt cß║ú c├íc mß║╖t h├áng ─æ╞░ß╗úc b├ín ß╗ƒ kho ─æ├│. 
+
+2. T├¼m tß║Ñt  cß║ú c├íc ─æ╞ín ─æß║╖t h├áng vß╗¢i t├¬n kh├ích h├áng  v├á ng├áy ─æß║╖t h├áng ─æ╞░ß╗úc thß╗▒c hiß╗çn bß╗ƒi kh├ích 
+h├áng ─æ├│ 
+
+3. T├¼m tß║Ñt cß║ú c├íc cß╗¡a h├áng c├╣ng vß╗¢i t├¬n th├ánh phß╗æ v├á sß╗æ ─æiß╗çn thoß║íi m├á c├│ b├ín c├íc mß║╖t h├áng ─æ╞░ß╗úc 
+─æß║╖t bß╗ƒi mß╗Öt kh├ích h├áng n├áo ─æ├│ 
+
+4. T├¼m ─æß╗ïa chß╗ë v─ân ph├▓ng ─æß║íi diß╗çn vß╗¢i t├¬n th├ánh phß╗æ, bang cß╗ºa tß║Ñt cß║ú c├íc cß╗¡a h├áng l╞░u kho mß╗Öt 
+mß║╖t h├áng n├áo ─æ├│ vß╗¢i sß╗æ l╞░ß╗úng tr├¬n mß╗⌐c cß╗Ñ thß╗â. 
+
+5. Vß╗¢i mß╗ùi mß╗Öt ─æ╞ín ─æß║╖t h├áng cß╗ºa kh├ích, liß╗çt k├¬ c├íc mß║╖t h├áng ─æ╞░ß╗úc ─æß║╖t c├╣ng vß╗¢i m├┤ tß║ú, m├ú cß╗¡a 
+h├áng, t├¬n th├ánh phß╗æ v├á c├íc cß╗¡a h├áng c├│ b├ín mß║╖t h├áng ─æ├│. 
+
+6. T├¼m th├ánh phß╗æ v├á bang m├á mß╗Öt kh├ích h├áng n├áo ─æ├│ sinh sß╗æng 
+
+7. T├¼m mß╗⌐c ─æß╗Ö tß╗ôn kho cß╗ºa mß╗Öt mß║╖t h├áng cß╗Ñ thß╗â tß║íi tß║Ñt cß║ú c├íc cß╗¡a h├áng ß╗ƒ mß╗Öt th├ánh phß╗æ cß╗Ñ thß╗â 
+n├áo ─æ├│ 
+
+8. T├¼m c├íc mß║╖t h├áng, sß╗æ l╞░ß╗úng ─æß║╖t, kh├ích h├áng, cß╗¡a h├áng v├á th├ánh phß╗æ cß╗ºa mß╗Öt ─æ╞ín ─æß║╖t h├áng. 
+
+9. T├¼m c├íc kh├ích h├áng du lß╗ïch, kh├ích h├áng ─æß║╖t theo ─æ╞░ß╗¥ng b╞░u ─æiß╗çn v├á kh├ích h├áng thuß╗Öc cß║ú hai 
+loß║íi 
+
+─Éß╗ïnh dß║íng t├ái liß╗çu b├ío c├ío: 
+
+1. Giß╗¢i thiß╗çu ΓÇô Mß╗Ñc ti├¬u v├á phß║ím vi cß╗ºa b├ái tß║¡p lß╗¢n 
+
+2. Y├¬u cß║ºu nghiß╗çp vß╗Ñ - n├¬u c├íc ─æß║╖c tß║ú ß╗⌐ng dß╗Ñng cß╗ºa kho dß╗» liß╗çu cho ng╞░ß╗¥i sß╗¡ dß╗Ñng 
+
+3. ─Éß║╖c tß║ú chß╗⌐c n─âng ΓÇô ─æß║╖c tß║ú ─æß║ºu v├áo v├á ─æß║ºu ra cß╗ºa kho dß╗» liß╗çu 
+
+4. Thiß║┐t kß║┐ kho dß╗» liß╗çu ΓÇô ph╞░╞íng ph├íp luß║¡n cho c├íc b╞░ß╗¢c thiß║┐t kß║┐ bao gß╗ôm cß║ú l╞░ß╗úc ─æß╗ô h├¼nh sao 
+
+5. C├ái ─æß║╖t c├íc khß╗æi dß╗» liß╗çu ΓÇô tß╗▒ ─æß╗Öng bß║▒ng  m├íy t├¡nh c├ái ─æß║╖t kho dß╗» liß╗çu v├á  tß║úi dß╗» liß╗çu v├áo  c├íc 
+khß╗æi. 
+
+6. C├íc b├ío c├ío ph├ón t├¡ch trß╗▒c tuyß║┐n ΓÇô nh├║ng c├íc lß╗çnh hoß║╖c thanh lß╗çnh ─æß╗â sinh b├ío c├ío OLAP 
+
+7. Kiß╗âm tra t├¡nh ─æ├║ng ─æß║»n  cß╗ºa dß╗» liß╗çu ΓÇô kiß╗âm  tra  c├íc b├ío c├ío OLAP vß╗¢i nguß╗ôn dß╗» liß╗çu tß╗½  c├íc 
+bß║úng quan hß╗ç 
+
+8. Kß║┐t luß║¡n ΓÇô tß╗òng kß║┐t nhß╗»ng c├┤ng viß╗çc ─æ├ú ho├án th├ánh v├á ─æß║ít ─æ╞░ß╗úc cß╗ºa b├ái tß║¡p lß╗¢n. 
+
+ 
+ 
+ 
+
+============================================================
+FILE: H╞░ß╗¢ng dß║½n v├á c├ích chß║Ñm ─æiß╗âm b├ái tß║¡p lß╗¢n KDL (1).pdf
+============================================================
+C├ích t├¡nh ─æiß╗âm b├ái tß║¡p lß╗¢n m├┤n Kho dß╗» liß╗çu (cao nhß║Ñt 10 ─æiß╗âm)  
+
+1)  (0.5 ─æiß╗âm) T├¡ch hß╗úp ─æ├║ng dß╗» liß╗çu tß╗½ hai nguß╗ôn th├ánh mß╗Öt nguß╗ôn (─æß╗òi sang m├┤ 
+
+h├¼nh thß╗▒c thß╗â li├¬n kß║┐t rß╗ôi mß╗¢i t├¡ch hß╗úp m├┤ h├¼nh ER) 
+
+2)  (1 ─æiß╗âm) Thiß║┐t kß║┐ m├┤ h├¼nh dß╗» liß╗çu ─æ╞░ß╗úc t├¡ch hß╗úp 
+3)  (1 ─æiß╗âm) Sinh dß╗» liß╗çu cho c├íc nguß╗ôn dß╗» liß╗çu 
+4)  (1 ─æiß╗âm) Thiß║┐t kß║┐ ─æ├║ng m├┤ h├¼nh dß╗» liß╗çu cho kho  
+5)  (1 ─æiß╗âm) C├ích ├ính xß║í ─æß╗â ─æß╗ò dß╗» liß╗çu tß╗½ CSDL t├¡ch hß╗úp v├áo kho 
+6)  (0.5 ─æiß╗âm) Tß║ío ph├ón cß║Ñp ─æß╗â t├¡nh khß╗æi cho OLAP  
+7)  (1 ─æiß╗âm) Tß║ío Metadata v├á c├íc file index cß║ºn thiß║┐t 
+8)  (1 ─æiß╗âm) Thiß║┐t kß║┐ c├íc khß╗æi dß╗» liß╗çu ─æß╗â thß╗▒c hiß╗çn OLAP 
+9)  (2 ─æiß╗âm) T├¡nh sß║╡n c├íc khß╗æi cho OLAP v├á Viß║┐t ß╗⌐ng dß╗Ñng ─æß╗â ─æ╞░a OLAP l├¬n Web 
+
+thß╗▒c hiß╗çn c├íc thao t├íc khoan s├óu xuß╗æng, l├¬n, chiß║┐u, chß╗ìn, ΓÇª 
+
+10) (1 ─æiß╗âm) Viß║┐t t├ái liß╗çu ─æß║ºy ─æß╗º bao gß╗ôm cß║ú m├┤ tß║ú y├¬u cß║ºu v├á giß╗¢i thiß╗çu chung 
+
+C├íc b╞░ß╗¢c ─æß╗â l├ám b├ái tß║¡p lß╗¢n phß║ºn kho dß╗» liß╗çu: 
+
+1- T├¡ch hß╗úp 2 nguß╗ôn dß╗» liß╗çu l├ám mß╗Öt nguß╗ôn IDB (Integrated DataBase) th├┤ng qua c├íc 
+b╞░ß╗¢c: chuyß╗ân ─æß╗òi ng╞░ß╗úc tß╗½ c├íc bß║úng CSDL quan hß╗ç sang m├┤ h├¼nh thß╗▒c thß╗â li├¬n kß║┐t; t├¡ch 
+hß╗úp  2  m├┤  h├¼nh  thß╗▒c  thß╗â  li├¬n  kß║┐t  th├ánh  mß╗Öt  m├┤  h├¼nh  thß╗▒c  thß╗â  li├¬n  kß║┐t  t├¡ch  hß╗úp  IER; 
+chuyß╗ân IER sang c├íc bß║úng dß╗» liß╗çu trong IDB 
+
+2- Nghi├¬n cß╗⌐u y├¬u cß║ºu cß╗ºa kho dß╗» liß╗çu ─æß╗â x├óy dß╗▒ng m├┤ h├¼nh dß╗» liß╗çu cho kho DW: gß╗ôm 
+mß║Ñy bß║úng fact, ─æß╗Ö ─æo trong bß║úng fact l├á g├¼; bß║úng theo chiß╗üu c├│ mß║Ñy bß║úng, gß╗ôm nhß╗»ng 
+chiß╗üu g├¼, thuß╗Öc t├¡nh cß╗ºa mß╗ùi chiß╗üu nh╞░ thß║┐ n├áo; c├│ chiß╗üu thß╗⌐ cß║Ñp hay kh├┤ng 
+
+3- X├íc ─æß╗ïnh c├ích thß╗⌐c ─æß╗â ─æß╗ò dß╗» liß╗çu tß╗½ IDB v├áo DW ─æ╞░ß╗úc x├óy dß╗▒ng tß╗½ b╞░ß╗¢c 1 v├á b╞░ß╗¢c 
+2 + Sinh dß╗» liß╗çu cho c├íc bß║úng cß╗ºa kho dß╗» liß╗çu DW ─æß╗â chuß║⌐n bß╗ï cho demo trong DW 
+server 
+
+4- X├íc ─æß╗ïnh c├íc ph├ón cß║Ñp nß║┐u c├│ cß╗ºa c├íc chiß╗üu dß╗» liß╗çu + X├óy dß╗▒ng c├íc khß╗æi dß╗» liß╗çu 
+nhiß╗üu chiß╗üu cß║ºn thiß║┐t theo y├¬u cß║ºu cß╗ºa ng╞░ß╗¥i sß╗¡ dß╗Ñng, l╞░u trß╗» sß║╡n c├íc khß╗æi trong OLAP 
+server ─æß╗â chuß║⌐n bß╗ï cho viß╗çc khai th├íc 
+
+5- Tß║ío Metadata v├á c├íc file index cß║ºn thiß║┐t cho kho dß╗» liß╗çu 
+
+6- X├óy dß╗▒ng giao diß╗çn vß╗¢i ng╞░ß╗¥i d├╣ng ─æß╗â demo c├íc ph├⌐p to├ín c╞í bß║ún cß╗ºa OLAP bao 
+gß╗ôm khoan s├óu xuß╗æng (drill down), cuß╗Ön l├¬n (roll up),  chiß║┐u chß╗ìn (slide and dice), xoay 
+(pivot) 
+
+ 
+7- Viß║┐t b├ío c├ío gß╗ôm c├íc phß║ºn nh╞░ h╞░ß╗¢ng dß║½n trong ─æß╗ü b├ái tß║¡p lß╗¢n (l╞░u ├╜ trong ─æ├│ n├│i 
+r├╡ ph├ón c├┤ng c├┤ng viß╗çc cß╗ºa tß╗½ng bß║ín trong nh├│m) +  Chuß║⌐n bß╗ï slide ─æß╗â tr├¼nh chiß║┐u trong 
+buß╗òi b├ío c├ío b├ái tß║¡p lß╗¢n cuß╗æi kß╗│ 
+
+
