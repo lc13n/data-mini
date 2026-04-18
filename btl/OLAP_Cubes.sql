@@ -1,6 +1,9 @@
 -- ============================================================
 -- BƯỚC 8: THIẾT KẾ CÁC KHỐI DỮ LIỆU OLAP
 -- Database: DW_BanHang
+-- Schema: Dim_ThoiGian (TimeKey, Thang, Quy, Nam)
+--         Fact_BanHang (MaKhachHang, MaMatHang, TimeKey, SoLuongBan, DoanhThu)
+--         Fact_Kho     (MaMatHang, MaCuaHang, TimeKey, SoLuongTonKho)
 -- ============================================================
 USE DW_BanHang;
 GO
@@ -99,6 +102,8 @@ PRINT N'✅ Cube_TonKho: ' + CAST(@@ROWCOUNT AS VARCHAR) + N' dòng';
 
 -- ========================
 -- KHỐI 3: Khách hàng theo loại & thành phố
+-- Dùng Dim_KhachHang JOIN Dim_VPDD để lấy thông tin địa lý
+-- (không qua Fact_BanHang.MaThanhPho vì chiều đó đã bị bỏ)
 -- ========================
 CREATE TABLE Cube_KhachHang (
     LoaiKhachHang   NVARCHAR(50),
@@ -179,7 +184,8 @@ CREATE PROCEDURE sp_RollUp_DiaDiem
 AS
 BEGIN
     SET NOCOUNT ON;
-    DECLARE @NamFilter INT = ISNULL(@Nam, YEAR(GETDATE()));
+    -- Nếu không truyền @Nam thì lấy năm gần nhất có dữ liệu
+    DECLARE @NamFilter INT = ISNULL(@Nam, (SELECT MAX(Nam) FROM Cube_TonKho));
     IF @MucDo = 'CuaHang'
         SELECT MaCuaHang, TenThanhPho, Bang, SUM(TongTonKho) AS TonKho
         FROM Cube_TonKho WHERE Nam = @NamFilter
@@ -289,7 +295,7 @@ JOIN Dim_MatHang mh ON tk.MaMatHang  = mh.MaMH
 ORDER BY ch.MaCuaHang, mh.MaMH;
 
 -- Q2: Tất cả đơn hàng + tên KH + ngày đặt của một khách hàng
-DECLARE @MaKHQ2 VARCHAR(10) = 'KH001';
+DECLARE @MaKHQ2 VARCHAR(10) = 'KH1';
 SELECT
     kh.MaKH, kh.TenKhachHang,
     SUM(f.SoLuongBan) AS TongSoLuong,
@@ -303,7 +309,7 @@ GROUP BY kh.MaKH, kh.TenKhachHang, tg.Nam, tg.Thang
 ORDER BY tg.Nam, tg.Thang;
 
 -- Q3: Cửa hàng + tên TP + SĐT có bán mặt hàng được đặt bởi 1 KH cụ thể
-DECLARE @MaKHQ3 VARCHAR(10) = 'KH001';
+DECLARE @MaKHQ3 VARCHAR(10) = 'KH1';
 SELECT DISTINCT ch.MaCuaHang, vp.TenThanhPho, ch.SDT, mh.MaMH, mh.MoTa
 FROM Fact_BanHang fb
 JOIN Dim_KhachHang kh ON fb.MaKhachHang = kh.MaKH
@@ -314,7 +320,7 @@ JOIN Dim_MatHang   mh ON fb.MaMatHang   = mh.MaMH
 WHERE kh.MaKH = @MaKHQ3;
 
 -- Q4: Địa chỉ VP + tên TP + bang của các CH lưu kho MH với SL > ngưỡng
-DECLARE @MaMHQ4 VARCHAR(10) = 'MH001';
+DECLARE @MaMHQ4 VARCHAR(10) = 'MH1';
 DECLARE @SLNguong INT = 100;
 SELECT DISTINCT vp.TenThanhPho, vp.Bang, vp.DiaChi, ch.MaCuaHang, SUM(tk.TongTonKho) AS TonKho
 FROM Cube_TonKho tk
@@ -326,7 +332,7 @@ HAVING SUM(tk.TongTonKho) > @SLNguong
 ORDER BY TonKho DESC;
 
 -- Q5: Mặt hàng đặt + mô tả + mã CH + tên TP bán mặt hàng đó (theo đơn KH)
-DECLARE @MaKHQ5 VARCHAR(10) = 'KH001';
+DECLARE @MaKHQ5 VARCHAR(10) = 'KH1';
 SELECT DISTINCT
     kh.MaKH, kh.TenKhachHang,
     mh.MaMH, mh.MoTa,
@@ -340,15 +346,15 @@ JOIN Dim_VPDD      vp ON ch.MaThanhPho  = vp.MaThanhPho
 WHERE kh.MaKH = @MaKHQ5;
 
 -- Q6: Thành phố và bang mà 1 KH sinh sống
-DECLARE @MaKHQ6 VARCHAR(10) = 'KH001';
+DECLARE @MaKHQ6 VARCHAR(10) = 'KH1';
 SELECT kh.MaKH, kh.TenKhachHang, vp.TenThanhPho, vp.Bang
 FROM Dim_KhachHang kh
 JOIN Dim_VPDD      vp ON kh.MaThanhPho = vp.MaThanhPho
 WHERE kh.MaKH = @MaKHQ6;
 
 -- Q7: Tồn kho của 1 MH tại tất cả CH ở 1 TP cụ thể
-DECLARE @MaMHQ7  VARCHAR(10) = 'MH001';
-DECLARE @MaTPQ7  VARCHAR(10) = 'HCM';
+DECLARE @MaMHQ7  VARCHAR(10) = 'MH1';
+DECLARE @MaTPQ7  VARCHAR(10) = 'VP1';
 SELECT ch.MaCuaHang, vp.TenThanhPho, SUM(tk.TongTonKho) AS TonKho
 FROM Cube_TonKho tk
 JOIN Dim_CuaHang ch ON tk.MaCuaHang  = ch.MaCuaHang
@@ -358,7 +364,7 @@ GROUP BY ch.MaCuaHang, vp.TenThanhPho
 ORDER BY TonKho DESC;
 
 -- Q8: MH + SL đặt + KH + CH + TP của một đơn đặt hàng cụ thể
-DECLARE @MaKHQ8 VARCHAR(10) = 'KH001';
+DECLARE @MaKHQ8 VARCHAR(10) = 'KH1';
 SELECT
     kh.MaKH, kh.TenKhachHang,
     mh.MaMH, mh.MoTa,

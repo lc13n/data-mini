@@ -72,48 +72,48 @@ CREATE TABLE Meta_Columns (
 
 INSERT INTO Meta_Columns VALUES
 -- Fact_BanHang
-('Fact_BanHang','MaKhachHang','VARCHAR(10)','FK','KhachHang.MaKH',N'Khóa ngoại → Dim_KhachHang'),
-('Fact_BanHang','MaMatHang',  'VARCHAR(10)','FK','MatHang.MaMH',  N'Khóa ngoại → Dim_MatHang'),
-('Fact_BanHang','TimeKey',    'INT',        'FK','Dim_ThoiGian',  N'Khóa ngoại → Dim_ThoiGian'),
+('Fact_BanHang','MaKhachHang','VARCHAR(10)','FK','KhachHang.MaKH',   N'Khóa ngoại → Dim_KhachHang'),
+('Fact_BanHang','MaMatHang',  'VARCHAR(10)','FK','MatHang.MaMH',     N'Khóa ngoại → Dim_MatHang'),
+('Fact_BanHang','TimeKey',    'INT',        'FK','Dim_ThoiGian.TimeKey', N'Khóa ngoại → Dim_ThoiGian'),
 ('Fact_BanHang','SoLuongBan', 'INT',        'Measure','MatHangDuocDat.SoLuongDat',N'Tổng số lượng đặt (SUM)'),
 ('Fact_BanHang','DoanhThu',   'DECIMAL(18,2)','Measure','SoLuongDat*GiaDat',N'Tổng doanh thu (SUM)'),
 
 -- Fact_Kho
-('Fact_Kho','MaMatHang',       'VARCHAR(10)','FK','MatHang.MaMH',     N'Khóa ngoại → Dim_MatHang'),
-('Fact_Kho','MaCuaHang',       'VARCHAR(10)','FK','CuaHang.MaCuaHang',N'Khóa ngoại → Dim_CuaHang'),
-('Fact_Kho','TimeKey',         'INT',        'FK','Dim_ThoiGian',     N'Khóa ngoại → Dim_ThoiGian'),
-('Fact_Kho','SoLuongTonKho',   'INT',        'Measure','MatHang_DuocLuuTru.SoLuongTrongKho',N'Số lượng tồn kho tại thời điểm'),
+('Fact_Kho','MaMatHang',      'VARCHAR(10)','FK','MatHang.MaMH',        N'Khóa ngoại → Dim_MatHang'),
+('Fact_Kho','MaCuaHang',      'VARCHAR(10)','FK','CuaHang.MaCuaHang',   N'Khóa ngoại → Dim_CuaHang'),
+('Fact_Kho','TimeKey',        'INT',        'FK','Dim_ThoiGian.TimeKey', N'Khóa ngoại → Dim_ThoiGian (tháng cập nhật tồn kho)'),
+('Fact_Kho','SoLuongTonKho',  'INT',        'Measure','MatHang_DuocLuuTru.SoLuongTrongKho',N'Số lượng tồn kho tại thời điểm'),
 
 -- Dim_ThoiGian
-('Dim_ThoiGian','TimeKey','INT','PK','IDENTITY',N'Khóa chính tự tăng'),
-('Dim_ThoiGian','Thang','INT','Attribute','MONTH(NgayDatHang)',N'Tháng (1-12)'),
-('Dim_ThoiGian','Quy',  'INT','Attribute','(Thang-1)/3+1',    N'Quý (1-4) — phân cấp con của Năm'),
-('Dim_ThoiGian','Nam',  'INT','Attribute','YEAR(NgayDatHang)', N'Năm — phân cấp cao nhất của Thời gian'),
+('Dim_ThoiGian','TimeKey','INT','PK','IDENTITY',             N'Khóa chính tự tăng'),
+('Dim_ThoiGian','Thang',  'INT','Attribute','MONTH(NgayDatHang)',N'Tháng (1-12)'),
+('Dim_ThoiGian','Quy',    'INT','Attribute','(Thang-1)/3+1',   N'Quý (1-4) — phân cấp con của Năm'),
+('Dim_ThoiGian','Nam',    'INT','Attribute','YEAR(NgayDatHang)',N'Năm — phân cấp cao nhất của Thời gian'),
 
 -- Dim_KhachHang
-('Dim_KhachHang','MaKH',          'VARCHAR(10)', 'PK','KhachHang.MaKH',         N'Khóa chính'),
-('Dim_KhachHang','TenKhachHang',  'NVARCHAR(100)','Attribute','KhachHang.TenKH',N'Tên khách hàng'),
+('Dim_KhachHang','MaKH',          'VARCHAR(10)', 'PK','KhachHang.MaKH',          N'Khóa chính'),
+('Dim_KhachHang','TenKhachHang',  'NVARCHAR(100)','Attribute','KhachHang.TenKH', N'Tên khách hàng'),
 ('Dim_KhachHang','MaThanhPho',    'VARCHAR(10)', 'FK','KhachHang.MaThanhPhoKhachHang',N'Thành phố sinh sống → Dim_VPDD'),
-('Dim_KhachHang','LoaiKhachHang', 'NVARCHAR(50)','Attribute','Derived',         N'Du lịch / Bưu điện / Du lịch & Bưu điện / Thường'),
+('Dim_KhachHang','LoaiKhachHang', 'NVARCHAR(50)','Attribute','Derived',          N'Du lịch / Bưu điện / Du lịch & Bưu điện / Thường'),
 
 -- Dim_MatHang
 ('Dim_MatHang','MaMH',      'VARCHAR(10)',  'PK','MatHang.MaMH',     N'Khóa chính'),
-('Dim_MatHang','MoTa',      'NVARCHAR(MAX)','Attribute','MatHang.MoTa',N'Mô tả mặt hàng'),
+('Dim_MatHang','MoTa',      'NVARCHAR(MAX)','Attribute','MatHang.MoTa',  N'Mô tả mặt hàng'),
 ('Dim_MatHang','KichCo',    'NVARCHAR(50)', 'Attribute','MatHang.KichCo',N'Kích cỡ: Lớn/Vừa/Nhỏ'),
 ('Dim_MatHang','TrongLuong','FLOAT',        'Attribute','MatHang.TrongLuong',N'Trọng lượng (kg)'),
 ('Dim_MatHang','DonGia',    'DECIMAL(18,2)','Attribute','MatHang.DonGia',N'Đơn giá'),
 
 -- Dim_VPDD
-('Dim_VPDD','MaThanhPho', 'VARCHAR(10)',  'PK','VanPhongDaiDien.MaThanhPho', N'Khóa chính'),
+('Dim_VPDD','MaThanhPho', 'VARCHAR(10)',  'PK','VanPhongDaiDien.MaThanhPho',   N'Khóa chính'),
 ('Dim_VPDD','TenThanhPho','NVARCHAR(100)','Attribute','VanPhongDaiDien.TenThanhPho',N'Tên thành phố'),
-('Dim_VPDD','Bang',       'NVARCHAR(50)', 'Attribute','VanPhongDaiDien.Bang',N'Bang/Miền — phân cấp trên Thành phố'),
+('Dim_VPDD','Bang',       'NVARCHAR(50)', 'Attribute','VanPhongDaiDien.Bang',   N'Bang/Miền — phân cấp trên Thành phố'),
 ('Dim_VPDD','DiaChi',     'NVARCHAR(255)','Attribute','VanPhongDaiDien.DiaChiVP',N'Địa chỉ văn phòng đại diện'),
 
 -- Dim_CuaHang
-('Dim_CuaHang','MaCuaHang','VARCHAR(10)', 'PK','CuaHang.MaCuaHang',N'Khóa chính'),
+('Dim_CuaHang','MaCuaHang','VARCHAR(10)', 'PK','CuaHang.MaCuaHang',         N'Khóa chính'),
 ('Dim_CuaHang','MaThanhPho','VARCHAR(10)','FK','CuaHang.MaThanhPhoVanPhong',N'Thành phố → Dim_VPDD'),
-('Dim_CuaHang','Bang',     'NVARCHAR(50)','Attribute','VanPhongDaiDien.Bang',N'Bang/Miền — phân cấp trên Thành phố'),
-('Dim_CuaHang','SDT',      'VARCHAR(20)', 'Attribute','CuaHang.SoDienThoai',N'Số điện thoại cửa hàng');
+('Dim_CuaHang','Bang',     'NVARCHAR(50)','Attribute','VanPhongDaiDien.Bang', N'Bang/Miền — phân cấp trên Thành phố'),
+('Dim_CuaHang','SDT',      'VARCHAR(20)', 'Attribute','CuaHang.SoDienThoai',  N'Số điện thoại cửa hàng');
 
 -- ========================
 -- 3. BẢNG MÔ TẢ PHÂN CẤP CHIỀU (Hierarchy)

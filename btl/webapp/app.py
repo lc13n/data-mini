@@ -66,7 +66,11 @@ def rollup():
     muc = request.args.get('muc', 'cuahang')
     nam = request.args.get('nam', type=int)
 
-    nam_filter = nam or 2024
+    # Nếu không truyền năm thì lấy năm gần nhất có dữ liệu
+    if nam is None:
+        _, rows_nam = query("SELECT MAX(Nam) AS MaxNam FROM Cube_TonKho")
+        nam = rows_nam[0]['MaxNam'] if rows_nam else 2024
+    nam_filter = nam
 
     if muc == 'cuahang':
         sql = """
@@ -171,12 +175,14 @@ def pivot_view():
 # ── API: 9 câu nghiệp vụ ─────────────────────────────────────
 @app.route('/query/<int:qid>')
 def run_query(qid):
-    makh   = request.args.get('makh',  'KH001')
-    mamh   = request.args.get('mamh',  'MH001')
-    matp   = request.args.get('matp',  'HCM')
+    # Giá trị mặc định khớp với dữ liệu sinh bởi sinhdulieu_new.sql
+    makh   = request.args.get('makh',  'KH1')
+    mamh   = request.args.get('mamh',  'MH1')
+    matp   = request.args.get('matp',  'VP1')
     nguong = request.args.get('nguong', 100, type=int)
 
     queries = {
+        # Q1: Tất cả cửa hàng + thành phố, bang, SĐT + mặt hàng bán ở kho đó
         1: ("""
             SELECT DISTINCT ch.MaCuaHang, vp.TenThanhPho, ch.Bang, ch.SDT,
                 mh.MaMH, mh.MoTa, mh.KichCo, mh.TrongLuong, mh.DonGia
@@ -186,6 +192,8 @@ def run_query(qid):
             JOIN Dim_MatHang mh ON tk.MaMatHang=mh.MaMH
             ORDER BY ch.MaCuaHang, mh.MaMH
             """, []),
+
+        # Q2: Tất cả đơn hàng + tên KH + ngày đặt của một khách hàng
         2: ("""
             SELECT kh.MaKH,kh.TenKhachHang,tg.Nam,tg.Thang,
                 SUM(f.SoLuongBan) AS TongSL, SUM(f.DoanhThu) AS DoanhThu
@@ -195,6 +203,8 @@ def run_query(qid):
             WHERE kh.MaKH=?
             GROUP BY kh.MaKH,kh.TenKhachHang,tg.Nam,tg.Thang ORDER BY tg.Nam,tg.Thang
             """, [makh]),
+
+        # Q3: Cửa hàng + tên TP + SĐT có bán mặt hàng được đặt bởi 1 KH cụ thể
         3: ("""
             SELECT DISTINCT ch.MaCuaHang,vp.TenThanhPho,ch.SDT,mh.MaMH,mh.MoTa
             FROM Fact_BanHang fb
@@ -205,6 +215,8 @@ def run_query(qid):
             JOIN Dim_MatHang   mh ON fb.MaMatHang=mh.MaMH
             WHERE kh.MaKH=?
             """, [makh]),
+
+        # Q4: Địa chỉ VP + tên TP + bang của các CH lưu kho MH với SL > ngưỡng
         4: ("""
             SELECT vp.TenThanhPho,vp.Bang,vp.DiaChi,ch.MaCuaHang,SUM(tk.TongTonKho) AS TonKho
             FROM Cube_TonKho tk
@@ -214,6 +226,8 @@ def run_query(qid):
             GROUP BY vp.TenThanhPho,vp.Bang,vp.DiaChi,ch.MaCuaHang
             HAVING SUM(tk.TongTonKho)>? ORDER BY TonKho DESC
             """, [mamh, nguong]),
+
+        # Q5: Mặt hàng đặt + mô tả + mã CH + tên TP bán mặt hàng đó (theo đơn KH)
         5: ("""
             SELECT DISTINCT kh.TenKhachHang,mh.MaMH,mh.MoTa,ch.MaCuaHang,vp.TenThanhPho
             FROM Fact_BanHang fb
@@ -224,11 +238,15 @@ def run_query(qid):
             JOIN Dim_VPDD      vp ON ch.MaThanhPho=vp.MaThanhPho
             WHERE kh.MaKH=?
             """, [makh]),
+
+        # Q6: Thành phố và bang mà 1 KH sinh sống
         6: ("""
             SELECT kh.MaKH,kh.TenKhachHang,vp.TenThanhPho,vp.Bang
             FROM Dim_KhachHang kh JOIN Dim_VPDD vp ON kh.MaThanhPho=vp.MaThanhPho
             WHERE kh.MaKH=?
             """, [makh]),
+
+        # Q7: Tồn kho của 1 MH tại tất cả CH ở 1 TP cụ thể
         7: ("""
             SELECT ch.MaCuaHang,vp.TenThanhPho,SUM(tk.TongTonKho) AS TonKho
             FROM Cube_TonKho tk
@@ -237,6 +255,8 @@ def run_query(qid):
             WHERE tk.MaMatHang=? AND tk.MaThanhPhoCH=?
             GROUP BY ch.MaCuaHang,vp.TenThanhPho ORDER BY TonKho DESC
             """, [mamh, matp]),
+
+        # Q8: MH + SL đặt + KH + CH + TP của một đơn đặt hàng cụ thể
         8: ("""
             SELECT kh.TenKhachHang,mh.MaMH,mh.MoTa,
                 SUM(fb.SoLuongBan) AS SoLuong,SUM(fb.DoanhThu) AS DoanhThu,
@@ -250,6 +270,8 @@ def run_query(qid):
             WHERE kh.MaKH=?
             GROUP BY kh.TenKhachHang,mh.MaMH,mh.MoTa,ch.MaCuaHang,vp.TenThanhPho
             """, [makh]),
+
+        # Q9: KH du lịch, KH bưu điện, KH cả hai loại
         9: ("""
             SELECT LoaiKhachHang, COUNT(*) AS SoLuong
             FROM Dim_KhachHang
