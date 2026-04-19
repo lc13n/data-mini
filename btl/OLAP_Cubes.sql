@@ -1,9 +1,9 @@
 -- ============================================================
 -- BƯỚC 8: THIẾT KẾ CÁC KHỐI DỮ LIỆU OLAP
 -- Database: DW_BanHang
--- Schema: Dim_ThoiGian (TimeKey, Thang, Quy, Nam)
---         Fact_BanHang (MaKhachHang, MaMatHang, TimeKey, SoLuongBan, DoanhThu)
---         Fact_Kho     (MaMatHang, MaCuaHang, TimeKey, SoLuongTonKho)
+-- Schema: Dim_ThoiGian  (MaThoiGian, Thang, Quy, Nam)
+--         Fact_BanHang  (MaKhachHang, MaMatHang, MaThoiGian, SoLuongBan, DoanhThu)
+--         Fact_Kho      (MaMatHang, MaCuaHang, MaThoiGian, SoLuongTonKho, GiaTriTonKho)
 -- ============================================================
 USE DW_BanHang;
 GO
@@ -37,7 +37,7 @@ INSERT INTO Cube_DoanhThu
 SELECT
     kh.LoaiKhachHang,
     kh.MaThanhPho       AS MaThanhPhoKH,
-    mh.MaMH             AS MaMatHang,
+    mh.MaMatHang,
     mh.MoTa             AS MoTaMatHang,
     mh.KichCo,
     tg.Nam,
@@ -46,10 +46,10 @@ SELECT
     SUM(f.SoLuongBan)   AS TongSoLuongBan,
     SUM(f.DoanhThu)     AS TongDoanhThu
 FROM Fact_BanHang f
-JOIN Dim_KhachHang kh ON f.MaKhachHang = kh.MaKH
-JOIN Dim_MatHang   mh ON f.MaMatHang   = mh.MaMH
-JOIN Dim_ThoiGian  tg ON f.TimeKey     = tg.TimeKey
-GROUP BY kh.LoaiKhachHang, kh.MaThanhPho, mh.MaMH, mh.MoTa, mh.KichCo, tg.Nam, tg.Quy, tg.Thang;
+JOIN Dim_KhachHang kh ON f.MaKhachHang  = kh.MaKhachHang
+JOIN Dim_MatHang   mh ON f.MaMatHang    = mh.MaMatHang
+JOIN Dim_ThoiGian  tg ON f.MaThoiGian   = tg.MaThoiGian
+GROUP BY kh.LoaiKhachHang, kh.MaThanhPho, mh.MaMatHang, mh.MoTa, mh.KichCo, tg.Nam, tg.Quy, tg.Thang;
 
 CREATE INDEX IX_Cube_DT_Nam    ON Cube_DoanhThu(Nam);
 CREATE INDEX IX_Cube_DT_MH     ON Cube_DoanhThu(MaMatHang);
@@ -76,23 +76,23 @@ CREATE TABLE Cube_TonKho (
 
 INSERT INTO Cube_TonKho
 SELECT
-    mh.MaMH,
+    mh.MaMatHang,
     mh.MoTa,
     mh.KichCo,
     ch.MaCuaHang,
-    ch.MaThanhPho,
+    ch.MaThanhPho       AS MaThanhPhoCH,
     vp.TenThanhPho,
-    ch.Bang,
+    vp.Bang,
     tg.Nam,
     tg.Quy,
     tg.Thang,
     SUM(f.SoLuongTonKho) AS TongTonKho
 FROM Fact_Kho f
-JOIN Dim_MatHang  mh ON f.MaMatHang  = mh.MaMH
+JOIN Dim_MatHang  mh ON f.MaMatHang  = mh.MaMatHang
 JOIN Dim_CuaHang  ch ON f.MaCuaHang  = ch.MaCuaHang
 JOIN Dim_VPDD     vp ON ch.MaThanhPho = vp.MaThanhPho
-JOIN Dim_ThoiGian tg ON f.TimeKey     = tg.TimeKey
-GROUP BY mh.MaMH, mh.MoTa, mh.KichCo, ch.MaCuaHang, ch.MaThanhPho, vp.TenThanhPho, ch.Bang, tg.Nam, tg.Quy, tg.Thang;
+JOIN Dim_ThoiGian tg ON f.MaThoiGian  = tg.MaThoiGian
+GROUP BY mh.MaMatHang, mh.MoTa, mh.KichCo, ch.MaCuaHang, ch.MaThanhPho, vp.TenThanhPho, vp.Bang, tg.Nam, tg.Quy, tg.Thang;
 
 CREATE INDEX IX_Cube_TK_MH  ON Cube_TonKho(MaMatHang);
 CREATE INDEX IX_Cube_TK_CH  ON Cube_TonKho(MaCuaHang);
@@ -102,8 +102,6 @@ PRINT N'✅ Cube_TonKho: ' + CAST(@@ROWCOUNT AS VARCHAR) + N' dòng';
 
 -- ========================
 -- KHỐI 3: Khách hàng theo loại & thành phố
--- Dùng Dim_KhachHang JOIN Dim_VPDD để lấy thông tin địa lý
--- (không qua Fact_BanHang.MaThanhPho vì chiều đó đã bị bỏ)
 -- ========================
 CREATE TABLE Cube_KhachHang (
     LoaiKhachHang   NVARCHAR(50),
@@ -129,9 +127,9 @@ SELECT
     COUNT(DISTINCT f.MaKhachHang) AS SoLuongKH,
     SUM(f.DoanhThu)               AS TongDoanhThu
 FROM Fact_BanHang f
-JOIN Dim_KhachHang kh ON f.MaKhachHang = kh.MaKH
+JOIN Dim_KhachHang kh ON f.MaKhachHang = kh.MaKhachHang
 JOIN Dim_VPDD      vp ON kh.MaThanhPho  = vp.MaThanhPho
-JOIN Dim_ThoiGian  tg ON f.TimeKey      = tg.TimeKey
+JOIN Dim_ThoiGian  tg ON f.MaThoiGian   = tg.MaThoiGian
 GROUP BY kh.LoaiKhachHang, kh.MaThanhPho, vp.TenThanhPho, vp.Bang, tg.Nam, tg.Quy, tg.Thang;
 
 PRINT N'✅ Cube_KhachHang: ' + CAST(@@ROWCOUNT AS VARCHAR) + N' dòng';
@@ -264,17 +262,16 @@ AS
 BEGIN
     SET NOCOUNT ON;
     SELECT Nam,
-        ISNULL([Du lịch],            0) AS [Du lich],
-        ISNULL([Bưu điện],           0) AS [Buu dien],
-        ISNULL([Du lịch & Bưu điện], 0) AS [DL_BD],
-        ISNULL([Thường],             0) AS [Thuong]
+        ISNULL([Du lịch],   0) AS [Du lich],
+        ISNULL([Bưu điện],  0) AS [Buu dien],
+        ISNULL([Cả hai],    0) AS [Ca hai]
     FROM (
         SELECT Nam, LoaiKhachHang, TongDoanhThu
         FROM Cube_DoanhThu
     ) src
     PIVOT (
         SUM(TongDoanhThu)
-        FOR LoaiKhachHang IN ([Du lịch],[Bưu điện],[Du lịch & Bưu điện],[Thường])
+        FOR LoaiKhachHang IN ([Du lịch],[Bưu điện],[Cả hai])
     ) pvt
     ORDER BY Nam;
 END
@@ -286,41 +283,41 @@ GO
 
 -- Q1: Tất cả cửa hàng + thành phố, bang, SĐT + mặt hàng bán ở kho đó
 SELECT DISTINCT
-    ch.MaCuaHang, vp.TenThanhPho, ch.Bang, ch.SDT,
-    mh.MaMH, mh.MoTa, mh.KichCo, mh.TrongLuong, mh.DonGia
+    ch.MaCuaHang, vp.TenThanhPho, vp.Bang, ch.SoDienThoai,
+    mh.MaMatHang, mh.MoTa, mh.KichCo, mh.TrongLuong, mh.DonGia
 FROM Cube_TonKho tk
 JOIN Dim_CuaHang ch ON tk.MaCuaHang  = ch.MaCuaHang
 JOIN Dim_VPDD    vp ON ch.MaThanhPho = vp.MaThanhPho
-JOIN Dim_MatHang mh ON tk.MaMatHang  = mh.MaMH
-ORDER BY ch.MaCuaHang, mh.MaMH;
+JOIN Dim_MatHang mh ON tk.MaMatHang  = mh.MaMatHang
+ORDER BY ch.MaCuaHang, mh.MaMatHang;
 
 -- Q2: Tất cả đơn hàng + tên KH + ngày đặt của một khách hàng
-DECLARE @MaKHQ2 VARCHAR(10) = 'KH1';
+DECLARE @MaKHQ2 VARCHAR(10) = 'KH0001';
 SELECT
-    kh.MaKH, kh.TenKhachHang,
+    kh.MaKhachHang, kh.TenKhachHang,
     SUM(f.SoLuongBan) AS TongSoLuong,
     SUM(f.DoanhThu)   AS TongDoanhThu,
     tg.Nam, tg.Thang
 FROM Fact_BanHang f
-JOIN Dim_KhachHang kh ON f.MaKhachHang = kh.MaKH
-JOIN Dim_ThoiGian  tg ON f.TimeKey      = tg.TimeKey
-WHERE kh.MaKH = @MaKHQ2
-GROUP BY kh.MaKH, kh.TenKhachHang, tg.Nam, tg.Thang
+JOIN Dim_KhachHang kh ON f.MaKhachHang = kh.MaKhachHang
+JOIN Dim_ThoiGian  tg ON f.MaThoiGian  = tg.MaThoiGian
+WHERE kh.MaKhachHang = @MaKHQ2
+GROUP BY kh.MaKhachHang, kh.TenKhachHang, tg.Nam, tg.Thang
 ORDER BY tg.Nam, tg.Thang;
 
 -- Q3: Cửa hàng + tên TP + SĐT có bán mặt hàng được đặt bởi 1 KH cụ thể
-DECLARE @MaKHQ3 VARCHAR(10) = 'KH1';
-SELECT DISTINCT ch.MaCuaHang, vp.TenThanhPho, ch.SDT, mh.MaMH, mh.MoTa
+DECLARE @MaKHQ3 VARCHAR(10) = 'KH0001';
+SELECT DISTINCT ch.MaCuaHang, vp.TenThanhPho, ch.SoDienThoai, mh.MaMatHang, mh.MoTa
 FROM Fact_BanHang fb
-JOIN Dim_KhachHang kh ON fb.MaKhachHang = kh.MaKH
+JOIN Dim_KhachHang kh ON fb.MaKhachHang = kh.MaKhachHang
 JOIN Fact_Kho      fk ON fb.MaMatHang   = fk.MaMatHang
 JOIN Dim_CuaHang   ch ON fk.MaCuaHang   = ch.MaCuaHang
 JOIN Dim_VPDD      vp ON ch.MaThanhPho  = vp.MaThanhPho
-JOIN Dim_MatHang   mh ON fb.MaMatHang   = mh.MaMH
-WHERE kh.MaKH = @MaKHQ3;
+JOIN Dim_MatHang   mh ON fb.MaMatHang   = mh.MaMatHang
+WHERE kh.MaKhachHang = @MaKHQ3;
 
 -- Q4: Địa chỉ VP + tên TP + bang của các CH lưu kho MH với SL > ngưỡng
-DECLARE @MaMHQ4 VARCHAR(10) = 'MH1';
+DECLARE @MaMHQ4 VARCHAR(10) = 'MH0013';
 DECLARE @SLNguong INT = 100;
 SELECT DISTINCT vp.TenThanhPho, vp.Bang, vp.DiaChi, ch.MaCuaHang, SUM(tk.TongTonKho) AS TonKho
 FROM Cube_TonKho tk
@@ -332,29 +329,29 @@ HAVING SUM(tk.TongTonKho) > @SLNguong
 ORDER BY TonKho DESC;
 
 -- Q5: Mặt hàng đặt + mô tả + mã CH + tên TP bán mặt hàng đó (theo đơn KH)
-DECLARE @MaKHQ5 VARCHAR(10) = 'KH1';
+DECLARE @MaKHQ5 VARCHAR(10) = 'KH0001';
 SELECT DISTINCT
-    kh.MaKH, kh.TenKhachHang,
-    mh.MaMH, mh.MoTa,
+    kh.MaKhachHang, kh.TenKhachHang,
+    mh.MaMatHang, mh.MoTa,
     ch.MaCuaHang, vp.TenThanhPho
 FROM Fact_BanHang fb
-JOIN Dim_KhachHang kh ON fb.MaKhachHang = kh.MaKH
-JOIN Dim_MatHang   mh ON fb.MaMatHang   = mh.MaMH
+JOIN Dim_KhachHang kh ON fb.MaKhachHang = kh.MaKhachHang
+JOIN Dim_MatHang   mh ON fb.MaMatHang   = mh.MaMatHang
 JOIN Fact_Kho      fk ON fb.MaMatHang   = fk.MaMatHang
 JOIN Dim_CuaHang   ch ON fk.MaCuaHang   = ch.MaCuaHang
 JOIN Dim_VPDD      vp ON ch.MaThanhPho  = vp.MaThanhPho
-WHERE kh.MaKH = @MaKHQ5;
+WHERE kh.MaKhachHang = @MaKHQ5;
 
 -- Q6: Thành phố và bang mà 1 KH sinh sống
-DECLARE @MaKHQ6 VARCHAR(10) = 'KH1';
-SELECT kh.MaKH, kh.TenKhachHang, vp.TenThanhPho, vp.Bang
+DECLARE @MaKHQ6 VARCHAR(10) = 'KH0001';
+SELECT kh.MaKhachHang, kh.TenKhachHang, vp.TenThanhPho, vp.Bang
 FROM Dim_KhachHang kh
 JOIN Dim_VPDD      vp ON kh.MaThanhPho = vp.MaThanhPho
-WHERE kh.MaKH = @MaKHQ6;
+WHERE kh.MaKhachHang = @MaKHQ6;
 
 -- Q7: Tồn kho của 1 MH tại tất cả CH ở 1 TP cụ thể
-DECLARE @MaMHQ7  VARCHAR(10) = 'MH1';
-DECLARE @MaTPQ7  VARCHAR(10) = 'VP1';
+DECLARE @MaMHQ7  VARCHAR(10) = 'MH0013';
+DECLARE @MaTPQ7  VARCHAR(10) = 'HN';
 SELECT ch.MaCuaHang, vp.TenThanhPho, SUM(tk.TongTonKho) AS TonKho
 FROM Cube_TonKho tk
 JOIN Dim_CuaHang ch ON tk.MaCuaHang  = ch.MaCuaHang
@@ -364,34 +361,34 @@ GROUP BY ch.MaCuaHang, vp.TenThanhPho
 ORDER BY TonKho DESC;
 
 -- Q8: MH + SL đặt + KH + CH + TP của một đơn đặt hàng cụ thể
-DECLARE @MaKHQ8 VARCHAR(10) = 'KH1';
+DECLARE @MaKHQ8 VARCHAR(10) = 'KH0001';
 SELECT
-    kh.MaKH, kh.TenKhachHang,
-    mh.MaMH, mh.MoTa,
+    kh.MaKhachHang, kh.TenKhachHang,
+    mh.MaMatHang, mh.MoTa,
     SUM(fb.SoLuongBan)  AS SoLuong,
     SUM(fb.DoanhThu)    AS DoanhThu,
     ch.MaCuaHang, vp.TenThanhPho
 FROM Fact_BanHang fb
-JOIN Dim_KhachHang kh ON fb.MaKhachHang = kh.MaKH
-JOIN Dim_MatHang   mh ON fb.MaMatHang   = mh.MaMH
+JOIN Dim_KhachHang kh ON fb.MaKhachHang = kh.MaKhachHang
+JOIN Dim_MatHang   mh ON fb.MaMatHang   = mh.MaMatHang
 JOIN Fact_Kho      fk ON fb.MaMatHang   = fk.MaMatHang
 JOIN Dim_CuaHang   ch ON fk.MaCuaHang   = ch.MaCuaHang
 JOIN Dim_VPDD      vp ON ch.MaThanhPho  = vp.MaThanhPho
-WHERE kh.MaKH = @MaKHQ8
-GROUP BY kh.MaKH, kh.TenKhachHang, mh.MaMH, mh.MoTa, ch.MaCuaHang, vp.TenThanhPho;
+WHERE kh.MaKhachHang = @MaKHQ8
+GROUP BY kh.MaKhachHang, kh.TenKhachHang, mh.MaMatHang, mh.MoTa, ch.MaCuaHang, vp.TenThanhPho;
 
 -- Q9: KH du lịch, KH bưu điện, KH cả hai loại
 SELECT
     LoaiKhachHang,
     COUNT(*) AS SoLuong
 FROM Dim_KhachHang
-WHERE LoaiKhachHang IN (N'Du lịch', N'Bưu điện', N'Du lịch & Bưu điện')
+WHERE LoaiKhachHang IN (N'Du lịch', N'Bưu điện', N'Cả hai')
 GROUP BY LoaiKhachHang;
 
 -- Chi tiết
-SELECT MaKH, TenKhachHang, LoaiKhachHang
+SELECT MaKhachHang, TenKhachHang, LoaiKhachHang
 FROM Dim_KhachHang
-WHERE LoaiKhachHang IN (N'Du lịch', N'Bưu điện', N'Du lịch & Bưu điện')
-ORDER BY LoaiKhachHang, MaKH;
+WHERE LoaiKhachHang IN (N'Du lịch', N'Bưu điện', N'Cả hai')
+ORDER BY LoaiKhachHang, MaKhachHang;
 
 PRINT N'✅ OLAP_Cubes.sql hoàn tất - 3 khối + 5 SP + 9 câu truy vấn nghiệp vụ';

@@ -1,0 +1,132 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ASUS\\Desktop\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|C:\\Users\\ASUS\\Desktop\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\DW Ban Hang.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|solutionrelative:DW_BanHang_SSAS\\DW Ban Hang.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|C:\\Users\\ASUS\\Desktop\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Dim Cua Hang.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|solutionrelative:DW_BanHang_SSAS\\Dim Cua Hang.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|C:\\Users\\ASUS\\Desktop\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Dim Mat Hang.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|solutionrelative:DW_BanHang_SSAS\\Dim Mat Hang.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|C:\\Users\\ASUS\\Desktop\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Dim Khach Hang.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|solutionrelative:DW_BanHang_SSAS\\Dim Khach Hang.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|C:\\Users\\ASUS\\Desktop\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Dim VPDD.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|solutionrelative:DW_BanHang_SSAS\\Dim VPDD.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|C:\\Users\\ASUS\\Desktop\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Dim Thoi Gian.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|solutionrelative:DW_BanHang_SSAS\\Dim Thoi Gian.dim||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|C:\\Users\\ASUS\\Desktop\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\DW Ban Hang.dsv||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|solutionrelative:DW_BanHang_SSAS\\DW Ban Hang.dsv||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DW Ban Hang.cube [Design]",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\DW Ban Hang.cube",
+              "RelativeDocumentMoniker": "DW_BanHang_SSAS\\DW Ban Hang.cube",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\DW Ban Hang.cube [Design]",
+              "RelativeToolTip": "DW_BanHang_SSAS\\DW Ban Hang.cube [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-19T21:50:32.789Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Dim Cua Hang.dim [Design]",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Dim Cua Hang.dim",
+              "RelativeDocumentMoniker": "DW_BanHang_SSAS\\Dim Cua Hang.dim",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Dim Cua Hang.dim [Design]",
+              "RelativeToolTip": "DW_BanHang_SSAS\\Dim Cua Hang.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-19T21:49:24.909Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Dim Mat Hang.dim [Design]",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Dim Mat Hang.dim",
+              "RelativeDocumentMoniker": "DW_BanHang_SSAS\\Dim Mat Hang.dim",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Dim Mat Hang.dim [Design]",
+              "RelativeToolTip": "DW_BanHang_SSAS\\Dim Mat Hang.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-19T21:43:28.471Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Dim Khach Hang.dim [Design]",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Dim Khach Hang.dim",
+              "RelativeDocumentMoniker": "DW_BanHang_SSAS\\Dim Khach Hang.dim",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Dim Khach Hang.dim [Design]",
+              "RelativeToolTip": "DW_BanHang_SSAS\\Dim Khach Hang.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-19T21:37:34.628Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Dim VPDD.dim [Design]",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Dim VPDD.dim",
+              "RelativeDocumentMoniker": "DW_BanHang_SSAS\\Dim VPDD.dim",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Dim VPDD.dim [Design]",
+              "RelativeToolTip": "DW_BanHang_SSAS\\Dim VPDD.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-19T21:35:33.335Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Dim Thoi Gian.dim [Design]",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Dim Thoi Gian.dim",
+              "RelativeDocumentMoniker": "DW_BanHang_SSAS\\Dim Thoi Gian.dim",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Dim Thoi Gian.dim [Design]",
+              "RelativeToolTip": "DW_BanHang_SSAS\\Dim Thoi Gian.dim [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-19T21:29:42.581Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DW Ban Hang.dsv [Design]",
+              "DocumentMoniker": "C:\\Users\\ASUS\\Desktop\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\DW Ban Hang.dsv",
+              "RelativeDocumentMoniker": "DW_BanHang_SSAS\\DW Ban Hang.dsv",
+              "ToolTip": "C:\\Users\\ASUS\\Desktop\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\DW Ban Hang.dsv [Design]",
+              "RelativeToolTip": "DW_BanHang_SSAS\\DW Ban Hang.dsv [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-19T21:13:28.964Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

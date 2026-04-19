@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DW OLAP — Kho Dữ Liệu Bán Hàng</title>
+  <meta name="description" content="Hệ thống phân tích trực tuyến OLAP cho kho dữ liệu bán hàng — Drill Down, Roll Up, Slice, Dice, Pivot" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════
+     SIDEBAR
+════════════════════════════════════════════════════════ -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-brand">
+    <div class="brand-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="2" y="3" width="20" height="14" rx="2"/>
+        <path d="M8 21h8M12 17v4"/>
+        <path d="M7 8h10M7 12h6"/>
+      </svg>
+    </div>
+    <div class="brand-text">
+      <span class="brand-title">DW OLAP</span>
+      <span class="brand-sub">Kho Dữ Liệu</span>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Phân Tích OLAP</div>
+
+    <a class="nav-item active" data-section="dashboard" id="nav-dashboard">
+      <span class="nav-icon">📊</span>
+      <span>Tổng Quan</span>
+    </a>
+    <a class="nav-item" data-section="drilldown" id="nav-drilldown">
+      <span class="nav-icon">🔽</span>
+      <span>Drill Down</span>
+      <span class="nav-badge">↓</span>
+    </a>
+    <a class="nav-item" data-section="rollup" id="nav-rollup">
+      <span class="nav-icon">🔼</span>
+      <span>Roll Up</span>
+      <span class="nav-badge">↑</span>
+    </a>
+    <a class="nav-item" data-section="slice" id="nav-slice">
+      <span class="nav-icon">✂️</span>
+      <span>Slice</span>
+    </a>
+    <a class="nav-item" data-section="dice" id="nav-dice">
+      <span class="nav-icon">🎲</span>
+      <span>Dice</span>
+    </a>
+    <a class="nav-item" data-section="pivot" id="nav-pivot">
+      <span class="nav-icon">🔄</span>
+      <span>Pivot</span>
+    </a>
+
+    <div class="nav-section-label" style="margin-top:1.5rem">9 Câu Nghiệp Vụ</div>
+
+    <a class="nav-item" data-section="queries" id="nav-queries">
+      <span class="nav-icon">🔍</span>
+      <span>Truy Vấn</span>
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="db-status" id="db-status">
+      <span class="status-dot"></span>
+      <span class="status-text">Đang kết nối...</span>
+    </div>
+  </div>
+</aside>
+
+<!-- ═══════════════════════════════════════════════════════
+     MAIN CONTENT
+════════════════════════════════════════════════════════ -->
+<main class="main" id="main">
+
+  <!-- Top Bar -->
+  <header class="topbar">
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+    <div class="topbar-breadcrumb">
+      <span id="page-title">Tổng Quan</span>
+    </div>
+    <div class="topbar-right">
+      <span class="topbar-db">DW_BanHang</span>
+    </div>
+  </header>
+
+  <!-- ── SECTION: DASHBOARD ─────────────────────────────── -->
+  <section class="section active" id="section-dashboard">
+    <div class="section-header">
+      <h1 class="section-title">Tổng Quan Hệ Thống</h1>
+      <p class="section-desc">Kho dữ liệu bán hàng — Hỗ trợ 5 phép toán OLAP và 9 câu truy vấn nghiệp vụ</p>
+    </div>
+
+    <div class="stat-grid" id="stat-grid">
+      <div class="stat-card loading">
+        <div class="stat-icon">💰</div>
+        <div class="stat-body">
+          <div class="stat-value" id="stat-doanhthu">—</div>
+          <div class="stat-label">Tổng Doanh Thu</div>
+        </div>
+      </div>
+      <div class="stat-card loading">
+        <div class="stat-icon">📦</div>
+        <div class="stat-body">
+          <div class="stat-value" id="stat-soluong">—</div>
+          <div class="stat-label">Tổng Số Lượng Bán</div>
+        </div>
+      </div>
+      <div class="stat-card loading">
+        <div class="stat-icon">🏪</div>
+        <div class="stat-body">
+          <div class="stat-value" id="stat-cuahang">—</div>
+          <div class="stat-label">Số Cửa Hàng</div>
+        </div>
+      </div>
+      <div class="stat-card loading">
+        <div class="stat-icon">👤</div>
+        <div class="stat-body">
+          <div class="stat-value" id="stat-khachhang">—</div>
+          <div class="stat-label">Số Khách Hàng</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-row">
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <h3>Doanh Thu Theo Loại Khách Hàng</h3>
+        </div>
+        <div class="chart-wrapper">
+          <canvas id="chart-kh-type"></canvas>
+        </div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-card-header">
+          <h3>Xu Hướng Doanh Thu Theo Năm</h3>
+        </div>
+        <div class="chart-wrapper">
+          <canvas id="chart-trend"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="olap-ops-grid">
+      <div class="olap-op-card" onclick="navigateTo('drilldown')">
+        <div class="op-icon drill">🔽</div>
+        <div class="op-name">Drill Down</div>
+        <div class="op-desc">Năm → Quý → Tháng</div>
+      </div>
+      <div class="olap-op-card" onclick="navigateTo('rollup')">
+        <div class="op-icon roll">🔼</div>
+        <div class="op-name">Roll Up</div>
+        <div class="op-desc">Cửa hàng → TP → Bang</div>
+      </div>
+      <div class="olap-op-card" onclick="navigateTo('slice')">
+        <div class="op-icon slice">✂️</div>
+        <div class="op-name">Slice</div>
+        <div class="op-desc">Cắt theo 1 chiều</div>
+      </div>
+      <div class="olap-op-card" onclick="navigateTo('dice')">
+        <div class="op-icon dice">🎲</div>
+        <div class="op-name">Dice</div>
+        <div class="op-desc">Cắt theo nhiều chiều</div>
+      </div>
+      <div class="olap-op-card" onclick="navigateTo('pivot')">
+        <div class="op-icon pivot">🔄</div>
+        <div class="op-name">Pivot</div>
+        <div class="op-desc">Ma trận LoaiKH × Năm</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION: DRILL DOWN ────────────────────────────── -->
+  <section class="section" id="section-drilldown">
+    <div class="section-header">
+      <h1 class="section-title">🔽 Drill Down</h1>
+      <p class="section-desc">Phân tích doanh thu từ mức Năm → Quý → Tháng. Click vào dòng dữ liệu để khoan sâu xuống.</p>
+    </div>
+
+    <div class="breadcrumb-trail" id="dd-breadcrumb">
+      <span class="bc-item active" onclick="app.drilldown.reset()">Tất cả năm</span>
+    </div>
+
+    <div class="content-card">
+      <div class="card-toolbar">
+        <div class="level-indicator" id="dd-level-badge">
+          <span class="level-dot"></span> Đang xem mức: <strong id="dd-level-text">Năm</strong>
+        </div>
+        <button class="btn btn-ghost" onclick="app.drilldown.reset()">↩ Reset</button>
+      </div>
+      <div id="dd-loading" class="table-loading hidden">
+        <div class="spinner"></div><span>Đang tải...</span>
+      </div>
+      <div class="table-wrapper" id="dd-table-wrapper"></div>
+      <div class="drill-hint" id="dd-hint">💡 Click vào dòng bất kỳ để khoan xuống mức thấp hơn</div>
+    </div>
+
+    <div class="content-card" style="margin-top:1.5rem">
+      <div class="chart-card-header"><h3>Biểu Đồ Doanh Thu</h3></div>
+      <div class="chart-wrapper" style="height:280px">
+        <canvas id="chart-drilldown"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION: ROLL UP ───────────────────────────────── -->
+  <section class="section" id="section-rollup">
+    <div class="section-header">
+      <h1 class="section-title">🔼 Roll Up</h1>
+      <p class="section-desc">Xem tồn kho từ cấp Cửa hàng → Thành phố → Bang (tổng quát dần).</p>
+    </div>
+
+    <div class="control-bar">
+      <div class="control-group">
+        <label class="control-label">Mức độ tổng hợp</label>
+        <div class="btn-group" id="rollup-level-group">
+          <button class="btn btn-level active" data-muc="cuahang" onclick="app.rollup.setLevel('cuahang')">🏪 Cửa hàng</button>
+          <button class="btn btn-level"         data-muc="thanhpho" onclick="app.rollup.setLevel('thanhpho')">🏙 Thành phố</button>
+          <button class="btn btn-level"         data-muc="bang"     onclick="app.rollup.setLevel('bang')">🗺 Bang</button>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="rollup-nam">Năm</label>
+        <select class="form-select" id="rollup-nam" onchange="app.rollup.load()"></select>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div id="ru-loading" class="table-loading hidden"><div class="spinner"></div><span>Đang tải...</span></div>
+      <div class="table-wrapper" id="ru-table-wrapper"></div>
+    </div>
+
+    <div class="content-card" style="margin-top:1.5rem">
+      <div class="chart-card-header"><h3>Biểu Đồ Tồn Kho</h3></div>
+      <div class="chart-wrapper" style="height:280px">
+        <canvas id="chart-rollup"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION: SLICE ─────────────────────────────────── -->
+  <section class="section" id="section-slice">
+    <div class="section-header">
+      <h1 class="section-title">✂️ Slice</h1>
+      <p class="section-desc">Cắt khối dữ liệu theo 1 chiều cố định. Chọn một bộ lọc để xem phần dữ liệu tương ứng.</p>
+    </div>
+
+    <div class="filter-card">
+      <div class="filter-row">
+        <div class="filter-group">
+          <label class="control-label" for="slice-loai">Loại Khách Hàng</label>
+          <select class="form-select" id="slice-loai">
+            <option value="">— Tất cả —</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label class="control-label" for="slice-nam">Năm</label>
+          <select class="form-select" id="slice-nam">
+            <option value="">— Tất cả —</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label class="control-label" for="slice-kichco">Kích Cỡ</label>
+          <select class="form-select" id="slice-kichco">
+            <option value="">— Tất cả —</option>
+          </select>
+        </div>
+        <div class="filter-group filter-action">
+          <button class="btn btn-primary" onclick="app.slice.load()">
+            <span>✂️</span> Áp dụng Slice
+          </button>
+        </div>
+      </div>
+      <div class="active-filters" id="slice-active-filters"></div>
+    </div>
+
+    <div class="content-card">
+      <div id="sl-loading" class="table-loading hidden"><div class="spinner"></div><span>Đang tải...</span></div>
+      <div class="table-wrapper" id="sl-table-wrapper"></div>
+    </div>
+  </section>
+
+  <!-- ── SECTION: DICE ──────────────────────────────────── -->
+  <section class="section" id="section-dice">
+    <div class="section-header">
+      <h1 class="section-title">🎲 Dice</h1>
+      <p class="section-desc">Cắt khối dữ liệu theo nhiều chiều đồng thời. Kết hợp nhiều bộ lọc để thu hẹp phạm vi phân tích.</p>
+    </div>
+
+    <div class="filter-card">
+      <div class="filter-row">
+        <div class="filter-group">
+          <label class="control-label" for="dice-tp">Thành Phố</label>
+          <select class="form-select" id="dice-tp">
+            <option value="">— Tất cả —</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label class="control-label" for="dice-mh">Mặt Hàng</label>
+          <select class="form-select" id="dice-mh">
+            <option value="">— Tất cả —</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label class="control-label" for="dice-nam-f">Năm từ</label>
+          <select class="form-select" id="dice-nam-f">
+            <option value="">— Tất cả —</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label class="control-label" for="dice-nam-t">Năm đến</label>
+          <select class="form-select" id="dice-nam-t">
+            <option value="">— Tất cả —</option>
+          </select>
+        </div>
+        <div class="filter-group filter-action">
+          <button class="btn btn-primary" onclick="app.dice.load()">
+            <span>🎲</span> Áp dụng Dice
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div id="di-loading" class="table-loading hidden"><div class="spinner"></div><span>Đang tải...</span></div>
+      <div class="table-wrapper" id="di-table-wrapper"></div>
+    </div>
+  </section>
+
+  <!-- ── SECTION: PIVOT ─────────────────────────────────── -->
+  <section class="section" id="section-pivot">
+    <div class="section-header">
+      <h1 class="section-title">🔄 Pivot</h1>
+      <p class="section-desc">Xoay chiều dữ liệu: Doanh thu theo Năm (dòng) × Loại Khách Hàng (cột). Màu sắc thể hiện cường độ doanh thu.</p>
+    </div>
+
+    <div class="content-card pivot-card">
+      <div class="card-toolbar">
+        <span class="level-indicator">
+          <span class="level-dot" style="background:var(--accent-blue)"></span>
+          Màu càng đậm → Doanh thu càng cao
+        </span>
+        <button class="btn btn-ghost" onclick="app.pivot.load()">↻ Tải lại</button>
+      </div>
+      <div id="pv-loading" class="table-loading hidden"><div class="spinner"></div><span>Đang tải...</span></div>
+      <div class="pivot-table-wrapper" id="pv-table-wrapper"></div>
+    </div>
+
+    <div class="content-card" style="margin-top:1.5rem">
+      <div class="chart-card-header"><h3>Biểu Đồ Cột Nhóm — Doanh Thu Theo Năm × Loại KH</h3></div>
+      <div class="chart-wrapper" style="height:320px">
+        <canvas id="chart-pivot"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SECTION: 9 QUERIES ─────────────────────────────── -->
+  <section class="section" id="section-queries">
+    <div class="section-header">
+      <h1 class="section-title">🔍 9 Câu Truy Vấn Nghiệp Vụ</h1>
+      <p class="section-desc">Các câu hỏi phân tích theo yêu cầu đề bài. Nhập tham số và bấm Thực thi để xem kết quả.</p>
+    </div>
+
+    <div class="params-card">
+      <div class="params-title">Tham số chung</div>
+      <div class="filter-row">
+        <div class="filter-group">
+          <label class="control-label" for="q-makh">Mã Khách Hàng</label>
+          <input class="form-input" id="q-makh" type="text" value="KH1" placeholder="VD: KH1" />
+        </div>
+        <div class="filter-group">
+          <label class="control-label" for="q-mamh">Mã Mặt Hàng</label>
+          <input class="form-input" id="q-mamh" type="text" value="MH1" placeholder="VD: MH1" />
+        </div>
+        <div class="filter-group">
+          <label class="control-label" for="q-matp">Mã Thành Phố</label>
+          <input class="form-input" id="q-matp" type="text" value="VP1" placeholder="VD: VP1" />
+        </div>
+        <div class="filter-group">
+          <label class="control-label" for="q-nguong">Ngưỡng tồn kho</label>
+          <input class="form-input" id="q-nguong" type="number" value="100" min="0" />
+        </div>
+      </div>
+    </div>
+
+    <div class="query-list" id="query-list">
+      <!-- Generated by JS -->
+    </div>
+  </section>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

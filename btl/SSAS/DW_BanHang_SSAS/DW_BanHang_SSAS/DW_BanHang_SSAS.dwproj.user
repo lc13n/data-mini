@@ -1,0 +1,39 @@
+<AnalysisServicesUserConfiguration xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0">
+  <Configurations>
+    <Configuration>
+      <Name>Development</Name>
+      <Options>
+        <UserIDs>
+          <ConfigurationSetting>
+            <Id>DW Ban Hang</Id>
+            <Name>DW Ban Hang</Name>
+            <Value xsi:type="xsd:string">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAZz6lqQ4okk2IQTbfmlAhJwAAAAAYAAAARABXACAAQgBhAG4AIABIAGEAbgBnAAAAEGYAAAABAAAgAAAA0wZkuo/xBWwI/eF3A1us01Kgn+N24Fq6h/DwXBrG5lsAAAAADoAAAAACAAAgAAAAZ+7ysppB0NyjGHmCFE/DHAdavdsVpw5JhgXzvPP7KqwQAAAAGOIT2VDgqzSd3ISrsF0bFUAAAAAIlJMmI6UmHHmUFtRK7BrnVCu3MPFBzEPWfg+sAlsuBgQI0koMba0ggvodF7iq84cQU9EZiskPm0ean/BWjxOD</Value>
+          </ConfigurationSetting>
+          <ConfigurationSetting>
+            <Id>DW Ban Hang 1</Id>
+            <Name>DW Ban Hang 1</Name>
+            <Value xsi:type="xsd:string">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAZz6lqQ4okk2IQTbfmlAhJwAAAAAcAAAARABXACAAQgBhAG4AIABIAGEAbgBnACAAMQAAABBmAAAAAQAAIAAAAD5s4RDDOGYYtv+ILs/Vx61K9SnLhGtVkoM3WUT6fmeWAAAAAA6AAAAAAgAAIAAAAMhifbaN/mVv4Net7t4a/ZIPpjjjJinKoV8AGe3NnF1lEAAAAEembpbtDdV2RuJjqKA29LdAAAAApA0PTPIg0UeIcUxv+Qe47cNamyTp2U2V5Hp9XUsFLtc8n2oSV5ZgCUMR6Ro8gipmfaSw8sgTIgHxwkfZF3CHxA==</Value>
+          </ConfigurationSetting>
+        </UserIDs>
+        <UserPasswords>
+          <ConfigurationSetting>
+            <Id>DW Ban Hang</Id>
+            <Name>DW Ban Hang</Name>
+            <Value xsi:type="xsd:string">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAZz6lqQ4okk2IQTbfmlAhJwAAAAAYAAAARABXACAAQgBhAG4AIABIAGEAbgBnAAAAEGYAAAABAAAgAAAASA4gFbhEO3G//ECPzQllK1jVk8+en2hv31Dv1uUYEnwAAAAADoAAAAACAAAgAAAACWGBqYvoNRSKMgIcZ9rA230k1DKpAH0o9Haeg2BaSwQQAAAAOo1MnbtvICAoeGjEGdf3NkAAAAD4kdCs2GomlwVzm7Iriu4SKmpCvR3+0OIq04OeToHmi84E3+8fMOSL7Vy2HGiowwvU/vWd5l7irhlN/NvPuzYi</Value>
+          </ConfigurationSetting>
+          <ConfigurationSetting>
+            <Id>DW Ban Hang 1</Id>
+            <Name>DW Ban Hang 1</Name>
+            <Value xsi:type="xsd:string">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAZz6lqQ4okk2IQTbfmlAhJwAAAAAcAAAARABXACAAQgBhAG4AIABIAGEAbgBnACAAMQAAABBmAAAAAQAAIAAAAFAWZIVgY02ug+ptEBeV/WGnmn2LeNNtXJ950O77RWUSAAAAAA6AAAAAAgAAIAAAAJAB/uOrl48RYPbiq2gGXclf3VuIcOcgORM/0msuu2IrEAAAAF1EqOxQr6dXgvlr6lfGJJxAAAAAI8csMQzbjzQAmvQtGlgiApJknFXRWq9KQDkzN7c+nAHOWUpnCpOT1KrWGf8+pPmVSRgwUK/QkpnM5GDH6DheKg==</Value>
+          </ConfigurationSetting>
+        </UserPasswords>
+        <TargetServer>localhost</TargetServer>
+        <TargetDatabase>DW_BanHang_SSAS</TargetDatabase>
+        <StartObject>
+          <ObjectId></ObjectId>
+          <ObjectType>Current</ObjectType>
+        </StartObject>
+      </Options>
+    </Configuration>
+  </Configurations>
+</AnalysisServicesUserConfiguration>
