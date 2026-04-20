@@ -1,18 +1,35 @@
 /**
  * DW OLAP Web Application — Node.js + Express Backend
- * Kết nối SQL Server (DW_BanHang) qua Windows Authentication
+ *
+ * Kiến trúc kết nối:
+ *   SQL Server (SQLEXPRESS → DW_BanHang) : Filter options + 9 câu query nghiệp vụ (Q1-Q9)
+ *   SSAS       (SSAS_DW → DW_BanHang_SSAS) : 5 phép OLAP qua MDX
+ *                                             (DrillDown, RollUp, Slice, Dice, Pivot)
  */
 
 const express = require('express');
 const sql     = require('mssql');
 const path    = require('path');
 
+// ─── SSAS / MDX Connection (node-adodb → MSOLAP) ────────────────────────────
+let ssasConn;
+try {
+  const ADODB = require('node-adodb');
+  ssasConn = ADODB.open(
+    'Provider=MSOLAP;'               +
+    'Data Source=localhost\\SSAS_DW;' +
+    'Initial Catalog=DW_BanHang_SSAS;' +
+    'Integrated Security=SSPI;'
+  );
+  console.log('✅ SSAS connection initialized → DW_BanHang_SSAS @ localhost\\SSAS_DW');
+} catch (e) {
+  console.warn('⚠️  node-adodb chưa cài. Chạy: npm install node-adodb');
+}
+
 const app  = express();
 const PORT = 3000;
 
-// ─── Cấu hình kết nối SQL Server ───────────────────────────────────────────
-// Dùng SQL Server Authentication (username + password)
-// Đảm bảo SQL Server đã bật chế độ "SQL Server and Windows Authentication mode"
+// ─── SQL Server Config (cho 9 query nghiệp vụ + filter) ─────────────────────
 const DB_CONFIG = {
   server:   process.env.DB_SERVER   || 'localhost',
   port:     process.env.DB_PORT     ? parseInt(process.env.DB_PORT) : 1433,
@@ -25,11 +42,7 @@ const DB_CONFIG = {
     encrypt:                false,
     enableArithAbort:       true,
   },
-  pool: {
-    max: 10,
-    min: 0,
-    idleTimeoutMillis: 30000,
-  },
+  pool: { max: 10, min: 0, idleTimeoutMillis: 30000 },
 };
 
 let pool;
@@ -42,13 +55,13 @@ async function getPool() {
   return pool;
 }
 
-// ─── Middleware ─────────────────────────────────────────────────────────────
+// ─── Middleware ──────────────────────────────────────────────────────────────
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// ─── Helper: thực thi query và trả về { columns, rows } ────────────────────
+// ─── Helper: chạy SQL query, trả về { columns, rows } ───────────────────────
 async function runQuery(sqlText, params = {}) {
-  const p = await getPool();
+  const p   = await getPool();
   const req = p.request();
   for (const [key, val] of Object.entries(params)) {
     if (val === null || val === undefined) {
@@ -61,157 +74,258 @@ async function runQuery(sqlText, params = {}) {
       req.input(key, sql.NVarChar, String(val));
     }
   }
-  const result = await req.query(sqlText);
+  const result  = await req.query(sqlText);
   const columns = result.recordset.columns
     ? Object.keys(result.recordset.columns)
     : result.recordset.length > 0 ? Object.keys(result.recordset[0]) : [];
   return { columns, rows: result.recordset };
 }
 
+// ─── Helper: chạy MDX query → SSAS, trả về { columns, rows } ────────────────
+async function runMDX(mdx) {
+  if (!ssasConn) {
+    throw new Error('SSAS chưa kết nối. Chạy: npm install node-adodb rồi restart server.');
+  }
+  const rawRows = await ssasConn.query(mdx);
+  if (!Array.isArray(rawRows) || rawRows.length === 0) {
+    return { columns: [], rows: [] };
+  }
+
+  // Normalize tên cột MDX dạng "[Dim X].[H].[Level]" → "Level"
+  const rawCols = Object.keys(rawRows[0]);
+  const colMap  = {};
+  const skipProps = ['MEMBER_CAPTION', 'MEMBER_KEY', 'MEMBER_UNIQUE_NAME', 'MEMBER_NAME', 'MEMBER_TYPE'];
+  rawCols.forEach(rawKey => {
+    let nice = rawKey;
+    if (rawKey.includes('].')) {
+      const parts = rawKey.replace(/\[|\]/g, '').split('.');
+      nice = parts[parts.length - 1];
+      if (skipProps.includes(nice) && parts.length > 1) {
+        nice = parts[parts.length - 2];
+      }
+    }
+    colMap[rawKey] = nice;
+  });
+
+  const columns = [...new Set(Object.values(colMap))];
+  const rows    = rawRows.map(row => {
+    const obj = {};
+    rawCols.forEach(k => { obj[colMap[k]] = row[k]; });
+    return obj;
+  });
+  return { columns, rows };
+}
+
+// ─── Helper: đổi tên cột sau khi runMDX (MDX trả về tên có space) ───────────
+function renameResult({ columns, rows }, map) {
+  const newCols = columns.map(c => map[c] !== undefined ? map[c] : c);
+  const newRows = rows.map(r => {
+    const obj = {};
+    columns.forEach(c => { obj[map[c] !== undefined ? map[c] : c] = r[c]; });
+    return obj;
+  });
+  return { columns: newCols, rows: newRows };
+}
+
 // ─── API: Health check ───────────────────────────────────────────────────────
 app.get('/api/health', async (req, res) => {
   try {
     await getPool();
-    res.json({ status: 'ok', database: 'DW_BanHang', timestamp: new Date() });
+    res.json({
+      status:    'ok',
+      sqlServer: `${DB_CONFIG.server}\\${DB_CONFIG.options.instanceName} → ${DB_CONFIG.database}`,
+      ssas:      ssasConn ? 'localhost\\SSAS_DW → DW_BanHang_SSAS' : 'not connected',
+      timestamp: new Date(),
+    });
   } catch (e) {
     res.status(500).json({ status: 'error', message: e.message });
   }
 });
 
-// ─── API: DRILL DOWN — Doanh thu Năm → Quý → Tháng ─────────────────────────
+// ─── API: DRILL DOWN — Doanh thu Năm → Quý → Tháng (MDX → SSAS) ─────────────
+// ?                    → tổng doanh thu theo Năm
+// ?nam=2023            → drill down vào 2023, kết quả theo Quý
+// ?nam=2023&quy=1      → drill down vào Q1/2023, kết quả theo Tháng
 app.get('/api/drilldown', async (req, res) => {
   try {
     const nam = req.query.nam ? parseInt(req.query.nam) : null;
     const quy = req.query.quy ? parseInt(req.query.quy) : null;
-
-    let sqlText, params, level;
+    let mdx, level;
 
     if (!nam) {
-      sqlText = `
-        SELECT Nam, SUM(TongDoanhThu) AS DoanhThu, SUM(TongSoLuongBan) AS SoLuong
-        FROM Cube_DoanhThu
-        GROUP BY Nam ORDER BY Nam`;
-      params = {}; level = 'nam';
+      level = 'nam';
+      mdx = `
+        SELECT {[Measures].[Doanh Thu],[Measures].[So Luong Ban]} ON COLUMNS,
+               NON EMPTY [Dim Thoi Gian].[Thoi Gian].[Nam].MEMBERS ON ROWS
+        FROM [DW Ban Hang]`;
     } else if (!quy) {
-      sqlText = `
-        SELECT Nam, Quy, SUM(TongDoanhThu) AS DoanhThu, SUM(TongSoLuongBan) AS SoLuong
-        FROM Cube_DoanhThu WHERE Nam = @nam
-        GROUP BY Nam, Quy ORDER BY Quy`;
-      params = { nam }; level = 'quy';
+      level = 'quy';
+      mdx = `
+        SELECT {[Measures].[Doanh Thu],[Measures].[So Luong Ban]} ON COLUMNS,
+               NON EMPTY [Dim Thoi Gian].[Thoi Gian].[Nam].&[${nam}].Children ON ROWS
+        FROM [DW Ban Hang]`;
     } else {
-      sqlText = `
-        SELECT Nam, Quy, Thang, SUM(TongDoanhThu) AS DoanhThu, SUM(TongSoLuongBan) AS SoLuong
-        FROM Cube_DoanhThu WHERE Nam = @nam AND Quy = @quy
-        GROUP BY Nam, Quy, Thang ORDER BY Thang`;
-      params = { nam, quy }; level = 'thang';
+      level = 'thang';
+      mdx = `
+        SELECT {[Measures].[Doanh Thu],[Measures].[So Luong Ban]} ON COLUMNS,
+               NON EMPTY [Dim Thoi Gian].[Thoi Gian].[Thang].MEMBERS ON ROWS
+        FROM [DW Ban Hang]
+        WHERE ([Dim Thoi Gian].[Nam].&[${nam}],[Dim Thoi Gian].[Quy].&[${quy}])`;
     }
 
-    const { columns, rows } = await runQuery(sqlText, params);
+    const raw = await runMDX(mdx);
+    // Đổi tên cột MDX → tên frontend expect
+    const { columns, rows } = renameResult(raw, {
+      'Doanh Thu':    'DoanhThu',
+      'So Luong Ban': 'SoLuong',
+    });
     res.json({ level, columns, rows, nam, quy });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
 });
 
-// ─── API: ROLL UP — Tồn kho CH → TP → Bang ─────────────────────────────────
+// ─── API: ROLL UP — Tồn kho CuaHang → ThanhPho → Bang (MDX → SSAS) ──────────
+// ?muc=cuahang   → mức chi tiết nhất (từng cửa hàng)
+// ?muc=thanhpho  → roll up theo thành phố
+// ?muc=bang      → roll up cao nhất (theo bang/tỉnh)
 app.get('/api/rollup', async (req, res) => {
   try {
     const muc = req.query.muc || 'cuahang';
-    let nam   = req.query.nam ? parseInt(req.query.nam) : null;
+    const measures = `{[Measures].[So Luong Ton Kho],[Measures].[Gia Tri Ton Kho]}`;
+    let mdx;
 
-    if (!nam) {
-      const { rows } = await runQuery('SELECT MAX(Nam) AS MaxNam FROM Cube_TonKho');
-      nam = rows[0]?.MaxNam || new Date().getFullYear();
-    }
-
-    let sqlText;
     if (muc === 'cuahang') {
-      sqlText = `
-        SELECT MaCuaHang, TenThanhPho, Bang, SUM(TongTonKho) AS TonKho
-        FROM Cube_TonKho WHERE Nam = @nam
-        GROUP BY MaCuaHang, TenThanhPho, Bang ORDER BY TonKho DESC`;
+      mdx = `
+        SELECT ${measures} ON COLUMNS,
+               NON EMPTY [Dim Cua Hang].[Ma Cua Hang].MEMBERS ON ROWS
+        FROM [DW Ban Hang]`;
     } else if (muc === 'thanhpho') {
-      sqlText = `
-        SELECT TenThanhPho, Bang, SUM(TongTonKho) AS TonKho
-        FROM Cube_TonKho WHERE Nam = @nam
-        GROUP BY TenThanhPho, Bang ORDER BY TonKho DESC`;
+      mdx = `
+        SELECT ${measures} ON COLUMNS,
+               NON EMPTY [Dim VPDD].[Dia Ly].[Ten Thanh Pho].MEMBERS ON ROWS
+        FROM [DW Ban Hang]`;
     } else {
-      sqlText = `
-        SELECT Bang, SUM(TongTonKho) AS TonKho
-        FROM Cube_TonKho WHERE Nam = @nam
-        GROUP BY Bang ORDER BY TonKho DESC`;
+      // bang — mức roll up cao nhất
+      mdx = `
+        SELECT ${measures} ON COLUMNS,
+               NON EMPTY [Dim VPDD].[Dia Ly].[Bang].MEMBERS ON ROWS
+        FROM [DW Ban Hang]`;
     }
 
-    const { columns, rows } = await runQuery(sqlText, { nam });
-    res.json({ muc, nam, columns, rows });
+    const raw = await runMDX(mdx);
+    const { columns, rows } = renameResult(raw, {
+      'So Luong Ton Kho': 'TonKho',
+      'Gia Tri Ton Kho':  'GiaTriTonKho',
+      'Ma Cua Hang':      'MaCuaHang',
+      'Ten Thanh Pho':    'TenThanhPho',
+    });
+    res.json({ muc, columns, rows });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
 });
 
-// ─── API: SLICE — Cắt 1 chiều ───────────────────────────────────────────────
+// ─── API: SLICE — Cắt 1 chiều (MDX → SSAS) ──────────────────────────────────
+// ?loai=Du lịch        → slice theo loại khách hàng
+// ?nam=2023            → slice theo năm
+// ?loai=...&nam=...    → cả hai
 app.get('/api/slice', async (req, res) => {
   try {
-    const loai   = req.query.loai   || null;
-    const nam    = req.query.nam    ? parseInt(req.query.nam) : null;
-    const kichco = req.query.kichco || null;
+    const loai = req.query.loai || null;
+    const nam  = req.query.nam  ? parseInt(req.query.nam) : null;
+    const measures = `{[Measures].[Doanh Thu],[Measures].[So Luong Ban]}`;
+    let mdx;
 
-    const sqlText = `
-      SELECT LoaiKhachHang, Nam, Quy, KichCo,
-             SUM(TongSoLuongBan) AS SoLuong,
-             SUM(TongDoanhThu)   AS DoanhThu
-      FROM Cube_DoanhThu
-      WHERE (@loai   IS NULL OR LoaiKhachHang = @loai)
-        AND (@nam    IS NULL OR Nam            = @nam)
-        AND (@kichco IS NULL OR KichCo         = @kichco)
-      GROUP BY LoaiKhachHang, Nam, Quy, KichCo
-      ORDER BY Nam, Quy`;
+    if (loai && nam) {
+      mdx = `
+        SELECT ${measures} ON COLUMNS,
+               NON EMPTY [Dim Thoi Gian].[Thoi Gian].[Quy].MEMBERS ON ROWS
+        FROM [DW Ban Hang]
+        WHERE ([Dim Khach Hang].[Loai Khach Hang].&[${loai}],
+               [Dim Thoi Gian].[Nam].&[${nam}])`;
+    } else if (loai) {
+      mdx = `
+        SELECT ${measures} ON COLUMNS,
+               NON EMPTY [Dim Thoi Gian].[Thoi Gian].[Nam].MEMBERS ON ROWS
+        FROM [DW Ban Hang]
+        WHERE [Dim Khach Hang].[Loai Khach Hang].&[${loai}]`;
+    } else if (nam) {
+      mdx = `
+        SELECT ${measures} ON COLUMNS,
+               NON EMPTY [Dim Khach Hang].[Phan Loai KH].[Loai Khach Hang].MEMBERS ON ROWS
+        FROM [DW Ban Hang]
+        WHERE [Dim Thoi Gian].[Nam].&[${nam}]`;
+    } else {
+      mdx = `
+        SELECT ${measures} ON COLUMNS,
+               NON EMPTY [Dim Thoi Gian].[Thoi Gian].[Nam].MEMBERS ON ROWS
+        FROM [DW Ban Hang]`;
+    }
 
-    const { columns, rows } = await runQuery(sqlText, { loai, nam, kichco });
-    res.json({ columns, rows, filters: { loai, nam, kichco } });
+    const { columns, rows } = await runMDX(mdx);
+    res.json({ columns, rows, filters: { loai, nam } });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
 });
 
-// ─── API: DICE — Cắt nhiều chiều ────────────────────────────────────────────
+// ─── API: DICE — Cắt nhiều chiều (MDX → SSAS) ───────────────────────────────
+// ?mamh=MH0001              → filter theo mặt hàng
+// ?matp=HN                  → filter theo mã thành phố (Dim_VPDD)
+// ?nam_f=2023&nam_t=2024    → filter theo dải năm
 app.get('/api/dice', async (req, res) => {
   try {
-    const matp  = req.query.matp  || null;
     const mamh  = req.query.mamh  || null;
+    const matp  = req.query.matp  || null;
     const nam_f = req.query.nam_f ? parseInt(req.query.nam_f) : null;
     const nam_t = req.query.nam_t ? parseInt(req.query.nam_t) : null;
 
-    const sqlText = `
-      SELECT MaMatHang, MoTaMatHang, KichCo,
-             TenThanhPho, Bang,
-             Nam, Quy, Thang, SUM(TongTonKho) AS TonKho
-      FROM Cube_TonKho
-      WHERE (@matp  IS NULL OR MaThanhPhoCH = @matp)
-        AND (@mamh  IS NULL OR MaMatHang    = @mamh)
-        AND (@nam_f IS NULL OR Nam          >= @nam_f)
-        AND (@nam_t IS NULL OR Nam          <= @nam_t)
-      GROUP BY MaMatHang, MoTaMatHang, KichCo, TenThanhPho, Bang, Nam, Quy, Thang
-      ORDER BY Nam, Thang`;
+    // Xây WHERE tuple cho matHang + thanhPho
+    const whereParts = [];
+    if (mamh) whereParts.push(`[Dim Mat Hang].[Ma Mat Hang].&[${mamh}]`);
+    if (matp) whereParts.push(`[Dim VPDD].[Ten Thanh Pho].&[${matp}]`);
+    const whereClause = whereParts.length > 0
+      ? `WHERE (${whereParts.join(',')})`
+      : '';
 
-    const { columns, rows } = await runQuery(sqlText, { matp, mamh, nam_f, nam_t });
-    res.json({ columns, rows, filters: { matp, mamh, nam_f, nam_t } });
+    // Filter năm qua MDX FILTER function (hỗ trợ dải năm)
+    let rowSet = `NON EMPTY [Dim Thoi Gian].[Thoi Gian].[Nam].MEMBERS`;
+    if (nam_f || nam_t) {
+      const conds = [];
+      if (nam_f) conds.push(`[Dim Thoi Gian].[Nam].CurrentMember.MemberValue >= ${nam_f}`);
+      if (nam_t) conds.push(`[Dim Thoi Gian].[Nam].CurrentMember.MemberValue <= ${nam_t}`);
+      rowSet = `NON EMPTY FILTER([Dim Thoi Gian].[Thoi Gian].[Nam].MEMBERS, ${conds.join(' AND ')})`;
+    }
+
+    const mdx = `
+      SELECT {[Measures].[So Luong Ton Kho],[Measures].[Gia Tri Ton Kho]} ON COLUMNS,
+             ${rowSet} ON ROWS
+      FROM [DW Ban Hang]
+      ${whereClause}`;
+
+    const { columns, rows } = await runMDX(mdx);
+    res.json({ columns, rows, filters: { mamh, matp, nam_f, nam_t } });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
 });
 
-// ─── API: PIVOT — Doanh thu LoaiKH × Năm ────────────────────────────────────
+// ─── API: PIVOT — Doanh thu LoaiKhachHang × Năm (SQL pivot → đúng format frontend) ──
 app.get('/api/pivot', async (req, res) => {
   try {
+    // Dùng SQL CASE WHEN để tạo bảng pivot đúng format frontend cần
     const sqlText = `
-      SELECT Nam,
-        ISNULL(SUM(CASE WHEN LoaiKhachHang = N'Du lịch'  THEN TongDoanhThu END), 0) AS DuLich,
-        ISNULL(SUM(CASE WHEN LoaiKhachHang = N'Bưu điện' THEN TongDoanhThu END), 0) AS BuuDien,
-        ISNULL(SUM(CASE WHEN LoaiKhachHang = N'Cả hai'   THEN TongDoanhThu END), 0) AS CaHai,
-        SUM(TongDoanhThu) AS TongCong
-      FROM Cube_DoanhThu
-      GROUP BY Nam ORDER BY Nam`;
+      SELECT tg.Nam,
+        ISNULL(SUM(CASE WHEN kh.LoaiKhachHang = N'Du lịch'  THEN f.DoanhThu END), 0) AS DuLich,
+        ISNULL(SUM(CASE WHEN kh.LoaiKhachHang = N'Bưu điện' THEN f.DoanhThu END), 0) AS BuuDien,
+        ISNULL(SUM(CASE WHEN kh.LoaiKhachHang = N'Cả hai'   THEN f.DoanhThu END), 0) AS DL_BD,
+        SUM(f.DoanhThu) AS TongCong
+      FROM Fact_BanHang f
+      JOIN Dim_KhachHang kh ON f.MaKhachHang = kh.MaKhachHang
+      JOIN Dim_ThoiGian  tg ON f.MaThoiGian  = tg.MaThoiGian
+      GROUP BY tg.Nam
+      ORDER BY tg.Nam`;
 
     const { columns, rows } = await runQuery(sqlText);
     res.json({ columns, rows });
@@ -220,7 +334,7 @@ app.get('/api/pivot', async (req, res) => {
   }
 });
 
-// ─── API: 9 Câu Truy Vấn Nghiệp Vụ ─────────────────────────────────────────
+// ─── API: 9 Câu Truy Vấn Nghiệp Vụ (SQL → SQLEXPRESS) ───────────────────────
 app.get('/api/query/:id', async (req, res) => {
   try {
     const id     = parseInt(req.params.id);
@@ -235,10 +349,10 @@ app.get('/api/query/:id', async (req, res) => {
         sql: `
           SELECT DISTINCT ch.MaCuaHang, vp.TenThanhPho, vp.Bang, ch.SoDienThoai,
             mh.MaMatHang, mh.MoTa, mh.KichCo, mh.TrongLuong, mh.DonGia
-          FROM Cube_TonKho tk
-          JOIN Dim_CuaHang ch ON tk.MaCuaHang = ch.MaCuaHang
+          FROM Fact_Kho fk
+          JOIN Dim_CuaHang ch ON fk.MaCuaHang = ch.MaCuaHang
           JOIN Dim_VPDD    vp ON ch.MaThanhPho = vp.MaThanhPho
-          JOIN Dim_MatHang mh ON tk.MaMatHang  = mh.MaMatHang
+          JOIN Dim_MatHang mh ON fk.MaMatHang  = mh.MaMatHang
           ORDER BY ch.MaCuaHang, mh.MaMatHang`,
         params: {},
       },
@@ -272,13 +386,13 @@ app.get('/api/query/:id', async (req, res) => {
         label: 'Địa chỉ VP + tên TP + bang của CH lưu kho một MH với SL > ngưỡng',
         sql: `
           SELECT vp.TenThanhPho, vp.Bang, vp.DiaChi, ch.MaCuaHang,
-                 SUM(tk.TongTonKho) AS TonKho
-          FROM Cube_TonKho tk
-          JOIN Dim_CuaHang ch ON tk.MaCuaHang = ch.MaCuaHang
+                 SUM(fk.SoLuongTonKho) AS TonKho
+          FROM Fact_Kho fk
+          JOIN Dim_CuaHang ch ON fk.MaCuaHang = ch.MaCuaHang
           JOIN Dim_VPDD    vp ON ch.MaThanhPho = vp.MaThanhPho
-          WHERE tk.MaMatHang = @mamh
+          WHERE fk.MaMatHang = @mamh
           GROUP BY vp.TenThanhPho, vp.Bang, vp.DiaChi, ch.MaCuaHang
-          HAVING SUM(tk.TongTonKho) > @nguong
+          HAVING SUM(fk.SoLuongTonKho) > @nguong
           ORDER BY TonKho DESC`,
         params: { mamh, nguong },
       },
@@ -307,11 +421,11 @@ app.get('/api/query/:id', async (req, res) => {
       7: {
         label: 'Tồn kho của 1 mặt hàng tại tất cả CH ở 1 thành phố cụ thể',
         sql: `
-          SELECT ch.MaCuaHang, vp.TenThanhPho, SUM(tk.TongTonKho) AS TonKho
-          FROM Cube_TonKho tk
-          JOIN Dim_CuaHang ch ON tk.MaCuaHang = ch.MaCuaHang
+          SELECT ch.MaCuaHang, vp.TenThanhPho, SUM(fk.SoLuongTonKho) AS TonKho
+          FROM Fact_Kho fk
+          JOIN Dim_CuaHang ch ON fk.MaCuaHang = ch.MaCuaHang
           JOIN Dim_VPDD    vp ON ch.MaThanhPho = vp.MaThanhPho
-          WHERE tk.MaMatHang = @mamh AND tk.MaThanhPhoCH = @matp
+          WHERE fk.MaMatHang = @mamh AND vp.MaThanhPho = @matp
           GROUP BY ch.MaCuaHang, vp.TenThanhPho
           ORDER BY TonKho DESC`,
         params: { mamh, matp },
@@ -333,7 +447,7 @@ app.get('/api/query/:id', async (req, res) => {
         params: { makh },
       },
       9: {
-        label: 'Khách hàng du lịch, bưu điện, cả hai loại và thường',
+        label: 'Phân loại khách hàng: Du lịch, Bưu điện, Cả hai',
         sql: `
           SELECT LoaiKhachHang, COUNT(*) AS SoLuong
           FROM Dim_KhachHang
@@ -356,24 +470,24 @@ app.get('/api/query/:id', async (req, res) => {
   }
 });
 
-// ─── API: Filter options ─────────────────────────────────────────────────────
+// ─── API: Filter options (query từ Dim tables — không phụ thuộc Cube_ tables) ─
 app.get('/api/filters', async (req, res) => {
   try {
-    const [loaiRes, namDTRes, kichcoRes, namTKRes, tpRes, mhRes] = await Promise.all([
-      runQuery('SELECT DISTINCT LoaiKhachHang AS val FROM Cube_DoanhThu ORDER BY 1'),
-      runQuery('SELECT DISTINCT Nam           AS val FROM Cube_DoanhThu ORDER BY 1'),
-      runQuery('SELECT DISTINCT KichCo        AS val FROM Cube_DoanhThu ORDER BY 1'),
-      runQuery('SELECT DISTINCT Nam           AS val FROM Cube_TonKho   ORDER BY 1'),
-      runQuery('SELECT DISTINCT MaThanhPhoCH  AS ma, TenThanhPho AS ten FROM Cube_TonKho ORDER BY 2'),
-      runQuery('SELECT DISTINCT MaMatHang     AS ma, MoTaMatHang AS ten FROM Cube_TonKho ORDER BY 1'),
+    const [loaiRes, namRes, kichcoRes, tpRes, mhRes] = await Promise.all([
+      runQuery(`SELECT DISTINCT LoaiKhachHang AS val
+                FROM Dim_KhachHang WHERE LoaiKhachHang IS NOT NULL ORDER BY val`),
+      runQuery(`SELECT DISTINCT Nam AS val FROM Dim_ThoiGian ORDER BY val`),
+      runQuery(`SELECT DISTINCT KichCo AS val FROM Dim_MatHang WHERE KichCo IS NOT NULL ORDER BY val`),
+      runQuery(`SELECT DISTINCT MaThanhPho AS ma, TenThanhPho AS ten FROM Dim_VPDD ORDER BY ten`),
+      runQuery(`SELECT DISTINCT MaMatHang AS ma, MoTa AS ten FROM Dim_MatHang ORDER BY ma`),
     ]);
     res.json({
-      loaiKH:    loaiRes.rows.map(r => r.val),
-      namDT:     namDTRes.rows.map(r => r.val),
-      kichCo:    kichcoRes.rows.map(r => r.val),
-      namTK:     namTKRes.rows.map(r => r.val),
-      thanhPho:  tpRes.rows,
-      matHang:   mhRes.rows,
+      loaiKH:   loaiRes.rows.map(r => r.val),
+      namDT:    namRes.rows.map(r => r.val),
+      kichCo:   kichcoRes.rows.map(r => r.val),
+      namTK:    namRes.rows.map(r => r.val),
+      thanhPho: tpRes.rows,
+      matHang:  mhRes.rows,
     });
   } catch (e) {
     res.status(500).json({ error: e.message });
@@ -385,12 +499,12 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// ─── Start Server ────────────────────────────────────────────────────────────
+// ─── Start Server ─────────────────────────────────────────────────────────────
 app.listen(PORT, async () => {
   console.log(`\n🚀 DW OLAP App đang chạy tại http://localhost:${PORT}`);
-  console.log(`📊 Kết nối tới: ${DB_CONFIG.server} → ${DB_CONFIG.database}\n`);
+  console.log(`📊 SQL Server : ${DB_CONFIG.server}\\${DB_CONFIG.options.instanceName} → ${DB_CONFIG.database}`);
+  console.log(`🔷 SSAS (MDX) : localhost\\SSAS_DW → DW_BanHang_SSAS\n`);
   try { await getPool(); } catch (e) {
     console.error('⚠️  Lỗi kết nối DB:', e.message);
-    console.error('   → Kiểm tra SQL Server đang chạy và tên instance đúng');
   }
 });

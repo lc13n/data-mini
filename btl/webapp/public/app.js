@@ -643,9 +643,9 @@ const app = {
     },
 
     async run(id) {
-      const makh   = document.getElementById('q-makh').value   || 'KH1';
-      const mamh   = document.getElementById('q-mamh').value   || 'MH1';
-      const matp   = document.getElementById('q-matp').value   || 'VP1';
+      const makh   = document.getElementById('q-makh').value   || 'KH0001';
+      const mamh   = document.getElementById('q-mamh').value   || 'MH0013';
+      const matp   = document.getElementById('q-matp').value   || 'HN';
       const nguong = document.getElementById('q-nguong').value || 100;
 
       const inner  = document.getElementById(`qinner-${id}`);

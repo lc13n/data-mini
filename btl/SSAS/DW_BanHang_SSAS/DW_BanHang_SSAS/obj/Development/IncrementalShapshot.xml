@@ -1,0 +1,89 @@
+﻿<DeploymentSnapshot xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0">
+  <Target>
+    <Database>DW_BanHang_SSAS</Database>
+    <Server>localhost\SSAS_DW</Server>
+    <ConnectionString>Data Source=localhost\SSAS_DW;Timeout=0</ConnectionString>
+  </Target>
+  <Options>
+    <TransactionalDeployment>false</TransactionalDeployment>
+    <PartitionDeployment>DeployPartitions</PartitionDeployment>
+    <RoleDeployment>DeployRolesRetainMembers</RoleDeployment>
+    <ProcessingOption>Default</ProcessingOption>
+    <OutputScript></OutputScript>
+    <ImpactAnalysisFile></ImpactAnalysisFile>
+    <ConfigurationSettingsDeployment>Deploy</ConfigurationSettingsDeployment>
+    <OptimizationSettingsDeployment>Deploy</OptimizationSettingsDeployment>
+    <WriteBackTableCreation>UseExisting</WriteBackTableCreation>
+  </Options>
+  <Snapshot>
+    <ObjectSnapshots>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.RelationalDataSource</Type>
+        <TimeStamp>hDhU8PSScwaM2tOmRP4/UHV0Arg=4/20/2026 11:44:20 AM4/20/2026 4:08:17 AM</TimeStamp>
+        <ID>
+          <String>DW Ban Hang</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.DataSourceView</Type>
+        <TimeStamp>23HuPDaWjfHDLFStm0Q52IbHZc8=4/20/2026 4:29:42 AM4/20/2026 4:13:23 AM</TimeStamp>
+        <ID>
+          <String>DW Ban Hang</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>F4zAMej7uAu5sEtxB2YiUroV3CI=4/20/2026 4:34:39 AM4/20/2026 4:29:41 AM</TimeStamp>
+        <ID>
+          <String>Dim Thoi Gian</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>WasP2AG3yVkFvBnCLwba/hB8UUQ=4/20/2026 4:42:41 AM4/20/2026 4:35:33 AM</TimeStamp>
+        <ID>
+          <String>Dim VPDD</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>13Lg2Sv5H1NbapTq3KKUZd5/Ci8=4/20/2026 4:42:43 AM4/20/2026 4:37:34 AM</TimeStamp>
+        <ID>
+          <String>Dim Khach Hang</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>Ha5C86Bi+9GyfiTBP4kysDySzlA=4/20/2026 4:43:28 AM4/20/2026 4:43:28 AM</TimeStamp>
+        <ID>
+          <String>Dim Mat Hang</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Dimension</Type>
+        <TimeStamp>dplyN4VPjI7YE3v7FKuFWQgl4hY=4/20/2026 4:49:24 AM4/20/2026 4:49:24 AM</TimeStamp>
+        <ID>
+          <String>Dim Cua Hang</String>
+        </ID>
+      </ObjectSnapshot>
+      <ObjectSnapshot>
+        <Type>Microsoft.AnalysisServices.Cube</Type>
+        <TimeStamp>Qji5MeuGt7Cm0PmW4Y+Z167W0mw=4/20/2026 11:44:58 AM4/20/2026 4:50:32 AMwIcJs/gchrSjN4oiqPOThXsCgpE=4/20/2026 4:50:32 AM4/20/2026 4:50:32 AM</TimeStamp>
+        <ID>
+          <String>DW Ban Hang</String>
+        </ID>
+      </ObjectSnapshot>
+    </ObjectSnapshots>
+    <DatabaseSnapshot>
+      <Type>Microsoft.AnalysisServices.Database</Type>
+      <TimeStamp>B4239TQy2Bw9ibYIt7gmtL3MMkg=4/20/2026 3:56:48 AM4/20/2026 3:56:47 AM</TimeStamp>
+      <ID>
+        <String>DW_BanHang_SSAS</String>
+      </ID>
+    </DatabaseSnapshot>
+    <Granularity>Coarse</Granularity>
+  </Snapshot>
+  <AssemblyLocations />
+  <ProcessingComplete>true</ProcessingComplete>
+  <LastDeployed>2026-04-20T04:45:11.603333Z</LastDeployed>
+</DeploymentSnapshot>
