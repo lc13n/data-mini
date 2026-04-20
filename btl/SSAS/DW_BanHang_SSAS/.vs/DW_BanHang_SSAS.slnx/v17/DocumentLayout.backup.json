@@ -1,0 +1,67 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_Kho.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|solutionrelative:DW_BanHang_SSAS\\Cube_Kho.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_BanHang.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|solutionrelative:DW_BanHang_SSAS\\Cube_BanHang.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\DW Ban Hang.dsv||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|solutionrelative:DW_BanHang_SSAS\\DW Ban Hang.dsv||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Cube_BanHang.cube [Design]",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_BanHang.cube",
+              "RelativeDocumentMoniker": "DW_BanHang_SSAS\\Cube_BanHang.cube",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_BanHang.cube [Design]",
+              "RelativeToolTip": "DW_BanHang_SSAS\\Cube_BanHang.cube [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-20T11:28:12.664Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Cube_Kho.cube [Design]",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_Kho.cube",
+              "RelativeDocumentMoniker": "DW_BanHang_SSAS\\Cube_Kho.cube",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_Kho.cube [Design]",
+              "RelativeToolTip": "DW_BanHang_SSAS\\Cube_Kho.cube [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-20T11:27:44.844Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DW Ban Hang.dsv [Design]",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\DW Ban Hang.dsv",
+              "RelativeDocumentMoniker": "DW_BanHang_SSAS\\DW Ban Hang.dsv",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\DW Ban Hang.dsv [Design]",
+              "RelativeToolTip": "DW_BanHang_SSAS\\DW Ban Hang.dsv [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-20T11:27:17.686Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="2abd2c2d-cbf2-4ac1-a5da-ce5e1dc94ad1" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="c5ecae86-cf59-445f-bd33-55930aafe23f" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
   <ID>Dim Thoi Gian</ID>
   <Name>Dim Thoi Gian</Name>
   <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
@@ -8,9 +8,9 @@
       <Name>http://schemas.microsoft.com/DataWarehouse/Designer/1.0:DiagramLayout</Name>
       <Value>
         <dds xmlns="">
-          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="2" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-3052" scrolltop="-4382" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="9144" y="11070" backcolor="2039583" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
+          <diagram fontclsid="{0BE35203-8F91-11CE-9DE3-00AA004BB851}" mouseiconclsid="{0BE35204-8F91-11CE-9DE3-00AA004BB851}" defaultlayout="MSDDS.Rectilinear" defaultlineroute="MSDDS.Rectilinear" version="7" nextobject="3" scale="100" pagebreakanchorx="0" pagebreakanchory="0" pagebreaksizex="0" pagebreaksizey="0" scrollleft="-3052" scrolltop="-4382" gridx="150" gridy="150" marginx="5000" marginy="5000" zoom="100" x="10319" y="13564" backcolor="2039583" defaultpersistence="2" PrintPageNumbersMode="3" PrintMarginTop="0" PrintMarginBottom="635" PrintMarginLeft="0" PrintMarginRight="0" marqueeselectionmode="0" mousepointer="0" snaptogrid="0" autotypeannotation="1" showscrollbars="0" viewpagebreaks="0" donotforceconnectorsbehindshapes="1" backpictureclsid="{00000000-0000-0000-0000-000000000000}">
             <font>
-              <ddsxmlobjectstreamwrapper binary="010000009001b0300100065461686f6d61" />
+              <ddsxmlobjectstreamwrapper binary="01000000900180380100065461686f6d61" />
             </font>
             <mouseicon>
               <ddsxmlobjectstreamwrapper binary="6c74000000000000" />
@@ -19,7 +19,7 @@
           <layoutmanager>
             <ddsxmlobj />
           </layoutmanager>
-          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="Dim_ThoiGian" left="232" top="-615" logicalid="1" controlid="1" masterid="0" hint1="0" hint2="0" width="3000" height="2307" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
+          <ddscontrol controlprogid="DdsShapes.DdsObjectManagedBridge" tooltip="Dim_ThoiGian" left="232" top="-615" logicalid="2" controlid="1" masterid="0" hint1="0" hint2="0" width="3000" height="2307" noresize="0" nomove="0" nodefaultattachpoints="0" autodrag="1" usedefaultiddshape="1" selectable="1" showselectionhandles="1" allownudging="1" isannotation="0" dontautolayout="0" groupcollapsed="0" tabstop="1" visible="1" snaptogrid="0">
             <control>
               <ddsxmlobjectstreaminitwrapper binary="000e0000b80b000003090000" />
             </control>
@@ -68,39 +68,40 @@
   </Annotations>
   <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
   <State>Unprocessed</State>
-  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="d62469b9-ec02-429f-ada1-e2077f4ce632">
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="33a4efcb-268e-45ba-bc73-41725ab03fef">
     <DataSourceViewID>DW Ban Hang</DataSourceViewID>
   </Source>
-  <ErrorConfiguration dwd:design-time-name="cbcfd979-9fe0-452b-915b-91e618f8529f">
+  <ErrorConfiguration dwd:design-time-name="0762dfa3-e1ad-4ac5-a875-90c54043c752">
     <KeyNotFound>ReportAndStop</KeyNotFound>
     <KeyDuplicate>ReportAndStop</KeyDuplicate>
     <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
   </ErrorConfiguration>
   <CurrentStorageMode>Molap</CurrentStorageMode>
   <Attributes>
-    <Attribute dwd:design-time-name="626a6f59-a766-414a-8630-812d64d97e80">
+    <Attribute dwd:design-time-name="ae192e1d-02f3-4995-9efd-9af39253bd0a">
       <ID>Ma Thoi Gian</ID>
       <Name>Ma Thoi Gian</Name>
       <Usage>Key</Usage>
+      <EstimatedCount>36</EstimatedCount>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="c8beaf5e-0ff6-4114-aa2e-67d571e73685">
+        <KeyColumn dwd:design-time-name="d4b1a325-f4c4-4fb0-9908-78d771a933b2">
           <DataType>Integer</DataType>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="dc74ef8f-48b3-4762-8af7-a004aca4c31e">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="345f8983-f620-481d-b82d-d9bdc5f39115">
             <TableID>dbo_Dim_ThoiGian</TableID>
             <ColumnID>MaThoiGian</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
       <AttributeRelationships>
-        <AttributeRelationship dwd:design-time-name="b216dfaf-0338-41c4-90db-eca1247f5ed1">
+        <AttributeRelationship dwd:design-time-name="6b5a49fc-5d85-4ab0-bbac-37d14a37a188">
           <AttributeID>Thang</AttributeID>
           <Name>Thang</Name>
         </AttributeRelationship>
-        <AttributeRelationship dwd:design-time-name="edf08073-2c9b-430d-a6b3-158cacbb4c4a">
+        <AttributeRelationship dwd:design-time-name="aadb55ff-837a-4b91-ad4e-b2f6cfae7849">
           <AttributeID>Quy</AttributeID>
           <Name>Quy</Name>
         </AttributeRelationship>
-        <AttributeRelationship dwd:design-time-name="93706040-91ff-4781-be4a-5d3bf0072a5f">
+        <AttributeRelationship dwd:design-time-name="a6a040bb-aecc-46d6-9896-4cac4ee50593">
           <AttributeID>Nam</AttributeID>
           <Name>Nam</Name>
         </AttributeRelationship>
@@ -109,13 +110,13 @@
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
-    <Attribute dwd:design-time-name="c01b1485-8e48-4d4c-a034-a4e79637b7f2">
+    <Attribute dwd:design-time-name="56da38ef-af6b-447e-b2f0-6782fc98ac35">
       <ID>Thang</ID>
       <Name>Thang</Name>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="8d48afda-7e3e-4855-b0fb-9bab64790546">
+        <KeyColumn dwd:design-time-name="fdda5a59-4844-4308-ac61-8756d46647f0">
           <DataType>Integer</DataType>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="aee6509a-216a-45f5-89a6-b9b3cfac0a9f">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="164ac694-aef6-4319-bc64-debc231ff8b2">
             <TableID>dbo_Dim_ThoiGian</TableID>
             <ColumnID>Thang</ColumnID>
           </Source>
@@ -125,13 +126,13 @@
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
-    <Attribute dwd:design-time-name="d1fe9174-d193-48ca-86a0-c5124791c3cc">
+    <Attribute dwd:design-time-name="417d41de-79c5-42ea-84a1-41f43d5c4d56">
       <ID>Quy</ID>
       <Name>Quy</Name>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="db0a9919-54ba-4e26-b88a-99ee6023f9d9">
+        <KeyColumn dwd:design-time-name="ce2fedcc-1bd9-4869-9dff-d7e407c37024">
           <DataType>Integer</DataType>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="d2471868-3f4d-45ce-8971-abaff5fab611">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="37954c8b-f56d-49b4-9ac0-c25eaf3074a9">
             <TableID>dbo_Dim_ThoiGian</TableID>
             <ColumnID>Quy</ColumnID>
           </Source>
@@ -141,13 +142,14 @@
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
-    <Attribute dwd:design-time-name="4a8a0a32-05b7-4d8a-9d58-27f3c1ce72bb">
+    <Attribute dwd:design-time-name="1c6561de-17f4-45f5-a209-972d3917c705">
       <ID>Nam</ID>
       <Name>Nam</Name>
+      <EstimatedCount>3</EstimatedCount>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="e1620c0a-23a6-408a-ad55-a241f7c72eb3">
+        <KeyColumn dwd:design-time-name="e15140bc-f119-4fe4-8cd0-86021aad29fa">
           <DataType>Integer</DataType>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="8b67510a-8c81-4a95-9b2f-783be671c7f8">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="d50337a8-e1c3-4a16-809a-7900b5dda8ac">
             <TableID>dbo_Dim_ThoiGian</TableID>
             <ColumnID>Nam</ColumnID>
           </Source>
@@ -159,21 +161,21 @@
     </Attribute>
   </Attributes>
   <Hierarchies>
-    <Hierarchy dwd:design-time-name="8507c6cc-702e-45c8-b151-178ee8abee7a">
+    <Hierarchy dwd:design-time-name="8ff45221-90ba-4d34-98fe-060c9f4da470">
       <ID>Hierarchy</ID>
       <Name>Thoi Gian</Name>
       <Levels>
-        <Level dwd:design-time-name="ab6ae30b-8002-49be-823d-309be8567c08">
+        <Level dwd:design-time-name="fe10bd4c-f961-4876-b3d3-07391451ae6a">
           <ID>Nam</ID>
           <Name>Nam</Name>
           <SourceAttributeID>Nam</SourceAttributeID>
         </Level>
-        <Level dwd:design-time-name="23de1089-25e3-4291-9cad-cdfb2373c5d8">
+        <Level dwd:design-time-name="ba1dc0c9-1315-4bda-a9d9-d0b4603fa67c">
           <ID>Quy</ID>
           <Name>Quy</Name>
           <SourceAttributeID>Quy</SourceAttributeID>
         </Level>
-        <Level dwd:design-time-name="f2a9fed8-e976-49dc-8555-2adbb5aae2b2">
+        <Level dwd:design-time-name="cacf6a51-5f03-4ccd-b7d3-ca7bd91ad387">
           <ID>Thang</ID>
           <Name>Thang</Name>
           <SourceAttributeID>Thang</SourceAttributeID>

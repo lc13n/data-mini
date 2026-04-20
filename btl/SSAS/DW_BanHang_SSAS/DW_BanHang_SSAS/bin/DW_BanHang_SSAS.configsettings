@@ -3,7 +3,7 @@
     <DataSources>
       <DataSource>
         <ID>DW Ban Hang</ID>
-        <ConnectionString>Provider=MSOLEDBSQL.1;Data Source=localhost\SQLEXPRESS;Persist Security Info=True;Password=;User ID=;Initial Catalog=DW_BanHang</ConnectionString>
+        <ConnectionString>Provider=MSOLEDBSQL.1;Data Source=127.0.0.1;Persist Security Info=True;Password=;User ID=;Initial Catalog=DW_BanHang</ConnectionString>
         <ImpersonationInfo>
           <ImpersonationMode xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">ImpersonateServiceAccount</ImpersonationMode>
           <ImpersonationInfoSecurity xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">Unchanged</ImpersonationInfoSecurity>
@@ -29,21 +29,26 @@
     </Dimensions>
     <Cubes>
       <Cube>
-        <ID>DW Ban Hang</ID>
+        <ID>Cube_Kho</ID>
+        <MeasureGroups>
+          <MeasureGroup>
+            <ID>Fact Kho</ID>
+            <Partitions>
+              <Partition>
+                <ID>Fact Kho</ID>
+              </Partition>
+            </Partitions>
+          </MeasureGroup>
+        </MeasureGroups>
+      </Cube>
+      <Cube>
+        <ID>Cube_BanHang</ID>
         <MeasureGroups>
           <MeasureGroup>
             <ID>Fact Ban Hang</ID>
             <Partitions>
               <Partition>
                 <ID>Fact Ban Hang</ID>
-              </Partition>
-            </Partitions>
-          </MeasureGroup>
-          <MeasureGroup>
-            <ID>Fact Kho</ID>
-            <Partitions>
-              <Partition>
-                <ID>Fact Kho</ID>
               </Partition>
             </Partitions>
           </MeasureGroup>

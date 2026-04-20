@@ -8,12 +8,142 @@
   </Database>
   <Cubes>
     <ProjectItem>
-      <Name>DW Ban Hang.cube</Name>
-      <FullPath>DW Ban Hang.cube</FullPath>
+      <Name>Cube_Kho.cube</Name>
+      <FullPath>Cube_Kho.cube</FullPath>
       <Dependencies>
         <ProjectItem>
-          <Name>DW Ban Hang.partitions</Name>
-          <FullPath>DW Ban Hang.partitions</FullPath>
+          <Name>Cube_Kho.partitions</Name>
+          <FullPath>Cube_Kho.partitions</FullPath>
+        </ProjectItem>
+      </Dependencies>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Cube_BanHang.cube</Name>
+      <FullPath>Cube_BanHang.cube</FullPath>
+      <Dependencies>
+        <ProjectItem>
+          <Name>Cube_BanHang.partitions</Name>
+          <FullPath>Cube_BanHang.partitions</FullPath>
+        </ProjectItem>
+      </Dependencies>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Cube_BanHang_ThoiGian_KhachHang.cube</Name>
+      <FullPath>Cube_BanHang_ThoiGian_KhachHang.cube</FullPath>
+      <Dependencies>
+        <ProjectItem>
+          <Name>Cube_BanHang_ThoiGian_KhachHang.partitions</Name>
+          <FullPath>Cube_BanHang_ThoiGian_KhachHang.partitions</FullPath>
+        </ProjectItem>
+      </Dependencies>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Cube_BanHang_KhachHang_MatHang.cube</Name>
+      <FullPath>Cube_BanHang_KhachHang_MatHang.cube</FullPath>
+      <Dependencies>
+        <ProjectItem>
+          <Name>Cube_BanHang_KhachHang_MatHang.partitions</Name>
+          <FullPath>Cube_BanHang_KhachHang_MatHang.partitions</FullPath>
+        </ProjectItem>
+      </Dependencies>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Cube_BanHang_ThoiGian_MatHang.cube</Name>
+      <FullPath>Cube_BanHang_ThoiGian_MatHang.cube</FullPath>
+      <Dependencies>
+        <ProjectItem>
+          <Name>Cube_BanHang_ThoiGian_MatHang.partitions</Name>
+          <FullPath>Cube_BanHang_ThoiGian_MatHang.partitions</FullPath>
+        </ProjectItem>
+      </Dependencies>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Cube_BanHang_ThoiGian.cube</Name>
+      <FullPath>Cube_BanHang_ThoiGian.cube</FullPath>
+      <Dependencies>
+        <ProjectItem>
+          <Name>Cube_BanHang_ThoiGian.partitions</Name>
+          <FullPath>Cube_BanHang_ThoiGian.partitions</FullPath>
+        </ProjectItem>
+      </Dependencies>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Cube_BanHang_KhachHang.cube</Name>
+      <FullPath>Cube_BanHang_KhachHang.cube</FullPath>
+      <Dependencies>
+        <ProjectItem>
+          <Name>Cube_BanHang_KhachHang.partitions</Name>
+          <FullPath>Cube_BanHang_KhachHang.partitions</FullPath>
+        </ProjectItem>
+      </Dependencies>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Cube_BanHang_MatHang.cube</Name>
+      <FullPath>Cube_BanHang_MatHang.cube</FullPath>
+      <Dependencies>
+        <ProjectItem>
+          <Name>Cube_BanHang_MatHang.partitions</Name>
+          <FullPath>Cube_BanHang_MatHang.partitions</FullPath>
+        </ProjectItem>
+      </Dependencies>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Cube_Kho_CuaHang_ThoiGian.cube</Name>
+      <FullPath>Cube_Kho_CuaHang_ThoiGian.cube</FullPath>
+      <Dependencies>
+        <ProjectItem>
+          <Name>Cube_Kho_CuaHang_ThoiGian.partitions</Name>
+          <FullPath>Cube_Kho_CuaHang_ThoiGian.partitions</FullPath>
+        </ProjectItem>
+      </Dependencies>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Cube_Kho_CuaHang_MatHang.cube</Name>
+      <FullPath>Cube_Kho_CuaHang_MatHang.cube</FullPath>
+      <Dependencies>
+        <ProjectItem>
+          <Name>Cube_Kho_CuaHang_MatHang.partitions</Name>
+          <FullPath>Cube_Kho_CuaHang_MatHang.partitions</FullPath>
+        </ProjectItem>
+      </Dependencies>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Cube_Kho_MatHang_ThoiGian.cube</Name>
+      <FullPath>Cube_Kho_MatHang_ThoiGian.cube</FullPath>
+      <Dependencies>
+        <ProjectItem>
+          <Name>Cube_Kho_MatHang_ThoiGian.partitions</Name>
+          <FullPath>Cube_Kho_MatHang_ThoiGian.partitions</FullPath>
+        </ProjectItem>
+      </Dependencies>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Cube_Kho_CuaHang.cube</Name>
+      <FullPath>Cube_Kho_CuaHang.cube</FullPath>
+      <Dependencies>
+        <ProjectItem>
+          <Name>Cube_Kho_CuaHang.partitions</Name>
+          <FullPath>Cube_Kho_CuaHang.partitions</FullPath>
+        </ProjectItem>
+      </Dependencies>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Cube_Kho_MatHang.cube</Name>
+      <FullPath>Cube_Kho_MatHang.cube</FullPath>
+      <Dependencies>
+        <ProjectItem>
+          <Name>Cube_Kho_MatHang.partitions</Name>
+          <FullPath>Cube_Kho_MatHang.partitions</FullPath>
+        </ProjectItem>
+      </Dependencies>
+    </ProjectItem>
+    <ProjectItem>
+      <Name>Cube_Kho_ThoiGian.cube</Name>
+      <FullPath>Cube_Kho_ThoiGian.cube</FullPath>
+      <Dependencies>
+        <ProjectItem>
+          <Name>Cube_Kho_ThoiGian.partitions</Name>
+          <FullPath>Cube_Kho_ThoiGian.partitions</FullPath>
         </ProjectItem>
       </Dependencies>
     </ProjectItem>
@@ -39,6 +169,10 @@
       <Name>Dim Cua Hang.dim</Name>
       <FullPath>Dim Cua Hang.dim</FullPath>
     </ProjectItem>
+    <ProjectItem>
+      <Name>Dim Mat Hang 1.dim</Name>
+      <FullPath>Dim Mat Hang 1.dim</FullPath>
+    </ProjectItem>
   </Dimensions>
   <DataSources>
     <ProjectItem>
@@ -60,7 +194,7 @@
           <ConfigurationSetting>
             <Id>DW Ban Hang</Id>
             <Name>DW Ban Hang</Name>
-            <Value xsi:type="xsd:string">Provider=MSOLEDBSQL.1;Data Source=localhost\SQLEXPRESS;Persist Security Info=True;Password=;User ID=;Initial Catalog=DW_BanHang</Value>
+            <Value xsi:type="xsd:string">Provider=MSOLEDBSQL.1;Data Source=127.0.0.1;Persist Security Info=True;Password=;User ID=;Initial Catalog=DW_BanHang</Value>
           </ConfigurationSetting>
         </ConnectionMappings>
         <ConnectionSecurityMappings>

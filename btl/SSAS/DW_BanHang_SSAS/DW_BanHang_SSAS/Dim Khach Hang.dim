@@ -1,4 +1,4 @@
-﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="3c6d71b5-8b8e-4d03-b21e-7e92526fed3c" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
+﻿<Dimension xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ddl2="http://schemas.microsoft.com/analysisservices/2003/engine/2" xmlns:ddl2_2="http://schemas.microsoft.com/analysisservices/2003/engine/2/2" xmlns:ddl100_100="http://schemas.microsoft.com/analysisservices/2008/engine/100/100" xmlns:ddl200="http://schemas.microsoft.com/analysisservices/2010/engine/200" xmlns:ddl200_200="http://schemas.microsoft.com/analysisservices/2010/engine/200/200" xmlns:ddl300="http://schemas.microsoft.com/analysisservices/2011/engine/300" xmlns:ddl300_300="http://schemas.microsoft.com/analysisservices/2011/engine/300/300" xmlns:ddl400="http://schemas.microsoft.com/analysisservices/2012/engine/400" xmlns:ddl400_400="http://schemas.microsoft.com/analysisservices/2012/engine/400/400" xmlns:ddl500="http://schemas.microsoft.com/analysisservices/2013/engine/500" xmlns:ddl500_500="http://schemas.microsoft.com/analysisservices/2013/engine/500/500" xmlns:dwd="http://schemas.microsoft.com/DataWarehouse/Designer/1.0" dwd:design-time-name="881b1909-e9b9-4e2a-a1b2-a9ff5d808e77" xmlns="http://schemas.microsoft.com/analysisservices/2003/engine">
   <ID>Dim Khach Hang</ID>
   <Name>Dim Khach Hang</Name>
   <CreatedTimestamp>0001-01-01T00:00:00Z</CreatedTimestamp>
@@ -68,40 +68,41 @@
   </Annotations>
   <LastProcessed>0001-01-01T00:00:00Z</LastProcessed>
   <State>Unprocessed</State>
-  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="55a7fe88-0882-41e1-a66e-f6568adb28f7">
+  <Source xsi:type="DataSourceViewBinding" dwd:design-time-name="3011247e-fe6f-41d9-9f29-d0d3d1f545cf">
     <DataSourceViewID>DW Ban Hang</DataSourceViewID>
   </Source>
-  <ErrorConfiguration dwd:design-time-name="0a57439e-69c0-4c7f-8cca-85e1f705da55">
+  <ErrorConfiguration dwd:design-time-name="58e1e83e-b390-4cb2-b1ab-2688c2040473">
     <KeyNotFound>ReportAndStop</KeyNotFound>
     <KeyDuplicate>ReportAndStop</KeyDuplicate>
     <NullKeyNotAllowed>ReportAndStop</NullKeyNotAllowed>
   </ErrorConfiguration>
   <CurrentStorageMode>Molap</CurrentStorageMode>
   <Attributes>
-    <Attribute dwd:design-time-name="c85f6379-c2ea-44f3-aa45-e9ea7fc0a2bb">
+    <Attribute dwd:design-time-name="a39e8ab2-b87a-49d1-ac13-7334fa797608">
       <ID>Ma Khach Hang</ID>
       <Name>Ma Khach Hang</Name>
       <Usage>Key</Usage>
+      <EstimatedCount>1000</EstimatedCount>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="e9cff5ec-f73b-43e9-8170-04e2b9bf7742">
+        <KeyColumn dwd:design-time-name="239d9c1b-3ac8-4738-beb2-56d5e8b47dff">
           <DataType>WChar</DataType>
           <DataSize>10</DataSize>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="fb9cd96f-51ac-4f07-a313-be47e8bc485a">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="9032f9ab-6f5a-4e7c-9252-baa52baaf144">
             <TableID>dbo_Dim_KhachHang</TableID>
             <ColumnID>MaKhachHang</ColumnID>
           </Source>
         </KeyColumn>
       </KeyColumns>
       <AttributeRelationships>
-        <AttributeRelationship dwd:design-time-name="66283200-1ab8-45b4-99b4-b9b988b17835">
+        <AttributeRelationship dwd:design-time-name="d8487d1e-4247-4047-ad0f-843b10cd7cc6">
           <AttributeID>Ten Khach Hang</AttributeID>
           <Name>Ten Khach Hang</Name>
         </AttributeRelationship>
-        <AttributeRelationship dwd:design-time-name="58f90e85-d891-4e32-9099-bab6a505c30a">
+        <AttributeRelationship dwd:design-time-name="e2c91c3b-a0b9-4d28-9b0e-93696eb3461c">
           <AttributeID>Ma Thanh Pho</AttributeID>
           <Name>Ma Thanh Pho</Name>
         </AttributeRelationship>
-        <AttributeRelationship dwd:design-time-name="8e607623-38c0-478c-bca1-9335a8eb18ad">
+        <AttributeRelationship dwd:design-time-name="1311f583-fc09-4249-9f51-223b5443a9a5">
           <AttributeID>Loai Khach Hang</AttributeID>
           <Name>Loai Khach Hang</Name>
         </AttributeRelationship>
@@ -110,14 +111,14 @@
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
-    <Attribute dwd:design-time-name="79ebdee2-56e4-42da-953c-e28c7b80c8f0">
+    <Attribute dwd:design-time-name="10c8463c-bf31-48d6-a25c-05ad9c5278be">
       <ID>Ten Khach Hang</ID>
       <Name>Ten Khach Hang</Name>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="c54a89fe-57f0-4db1-9d0c-3f8a1884ef20">
+        <KeyColumn dwd:design-time-name="37161361-525c-4004-85f4-e9ab03f8af75">
           <DataType>WChar</DataType>
           <DataSize>100</DataSize>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="8538b59e-da92-43b6-909d-49409d31e3f3">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="92d84012-5c17-4943-a42a-6be932611d65">
             <TableID>dbo_Dim_KhachHang</TableID>
             <ColumnID>TenKhachHang</ColumnID>
           </Source>
@@ -127,14 +128,14 @@
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
-    <Attribute dwd:design-time-name="3dc8b13e-6b92-4ae2-884b-564da3800be7">
+    <Attribute dwd:design-time-name="9f4ad61b-5d48-4f94-9f79-0ca0036d6b4a">
       <ID>Ma Thanh Pho</ID>
       <Name>Ma Thanh Pho</Name>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="22b9bdc3-1a4d-4d69-b728-be67269cfb38">
+        <KeyColumn dwd:design-time-name="c52929c5-e49f-412e-ba80-78fc4547c2f8">
           <DataType>WChar</DataType>
           <DataSize>10</DataSize>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="5c9a70f6-e788-48c6-956e-56d904a3d0d5">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="bad862f0-403f-481f-ae4c-eba31b83af8f">
             <TableID>dbo_Dim_KhachHang</TableID>
             <ColumnID>MaThanhPho</ColumnID>
           </Source>
@@ -144,14 +145,15 @@
       <ddl200:ProcessingState>Unprocessed</ddl200:ProcessingState>
       <ddl300:AttributeHierarchyProcessingState>Unprocessed</ddl300:AttributeHierarchyProcessingState>
     </Attribute>
-    <Attribute dwd:design-time-name="cc97d920-c72e-4db8-8382-75bd675db69a">
+    <Attribute dwd:design-time-name="995a5b43-713c-4bdb-bccd-c0e0036bc3ef">
       <ID>Loai Khach Hang</ID>
       <Name>Loai Khach Hang</Name>
+      <EstimatedCount>3</EstimatedCount>
       <KeyColumns>
-        <KeyColumn dwd:design-time-name="482af0c6-8ddc-4ec7-b62f-219fe711739e">
+        <KeyColumn dwd:design-time-name="e933ac9b-b465-407a-ad9f-7ffc9f0da54d">
           <DataType>WChar</DataType>
           <DataSize>50</DataSize>
-          <Source xsi:type="ColumnBinding" dwd:design-time-name="125a4cce-ae22-4eb8-baaa-e02c56cfb6af">
+          <Source xsi:type="ColumnBinding" dwd:design-time-name="1e5127fb-1814-4d10-ae60-65e4c3b6808b">
             <TableID>dbo_Dim_KhachHang</TableID>
             <ColumnID>LoaiKhachHang</ColumnID>
           </Source>
@@ -163,16 +165,16 @@
     </Attribute>
   </Attributes>
   <Hierarchies>
-    <Hierarchy dwd:design-time-name="3775ca4e-e3f8-4c77-b0b1-519546277f9c">
+    <Hierarchy dwd:design-time-name="d898810a-1e05-42a6-88f2-2f6cdeda2f95">
       <ID>Hierarchy</ID>
       <Name>Phan Loai KH</Name>
       <Levels>
-        <Level dwd:design-time-name="7f103df8-7090-48ad-b245-a195dfa65790">
+        <Level dwd:design-time-name="22b5793e-ec4b-49d1-9036-ab740a26c7cf">
           <ID>Loai Khach Hang</ID>
           <Name>Loai Khach Hang</Name>
           <SourceAttributeID>Loai Khach Hang</SourceAttributeID>
         </Level>
-        <Level dwd:design-time-name="6c37a8c9-0b0f-4b47-9278-fcb9b47f9187">
+        <Level dwd:design-time-name="1f49dd01-6c2a-409c-868c-aeb673a2627b">
           <ID>Ma Khach Hang</ID>
           <Name>Ma Khach Hang</Name>
           <SourceAttributeID>Ma Khach Hang</SourceAttributeID>

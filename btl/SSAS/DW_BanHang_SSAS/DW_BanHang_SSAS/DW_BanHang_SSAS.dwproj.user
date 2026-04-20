@@ -7,7 +7,7 @@
           <ConfigurationSetting>
             <Id>DW Ban Hang</Id>
             <Name>DW Ban Hang</Name>
-            <Value xsi:type="xsd:string">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAZz6lqQ4okk2IQTbfmlAhJwAAAAAYAAAARABXACAAQgBhAG4AIABIAGEAbgBnAAAAEGYAAAABAAAgAAAATeJY30fLlQFrcXO0Tigpj3kImCR0CUkQAMEaBqb2Q0oAAAAADoAAAAACAAAgAAAAV9e91AYle/r2JxxVAeAZTVhtSsiSf0xgienX4l1dVnAQAAAAsmvSQjoiSWOPCYxUBOe0wUAAAAB4iF8kq9iqKOXB/rjYsiZqaN7R21iRYe5qDZEidde8Rot+al1o1Qul0Zsv/TFKOqHXxCCvoS3LqCCZAMToQb0z</Value>
+            <Value xsi:type="xsd:string">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA8y/KrzfDr0yGAgDEASWkjQAAAAAYAAAARABXACAAQgBhAG4AIABIAGEAbgBnAAAAEGYAAAABAAAgAAAAuVSjXIkuEb5EZvW8PD9KdbXGE3cB3JM0tk9NNzXADOIAAAAADoAAAAACAAAgAAAAGuBYZKs0IF0qBqAbJ4ED3XF6H7qoT0tTkFHAr58kyOoQAAAATEn3+ABur/LB9K1sVtbeG0AAAACkrasowlitNgLVfOa4Ti8dt9VFbykOdVMd9dUK+hrhcVlRgLz7qeGLBuPoQm/hPNcNWgoVkDDPYRhc5jhjgtVt</Value>
           </ConfigurationSetting>
           <ConfigurationSetting>
             <Id>DW Ban Hang 1</Id>
@@ -19,7 +19,7 @@
           <ConfigurationSetting>
             <Id>DW Ban Hang</Id>
             <Name>DW Ban Hang</Name>
-            <Value xsi:type="xsd:string">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAZz6lqQ4okk2IQTbfmlAhJwAAAAAYAAAARABXACAAQgBhAG4AIABIAGEAbgBnAAAAEGYAAAABAAAgAAAA0u1fykNSlgCcH0YohxHhTvezbt+9Og8LcOiXDf7rnOQAAAAADoAAAAACAAAgAAAAWCuLjwGfPbAJw43c7bnt0hj0uIMzc3KKvPZb9xIvemYQAAAAg94dIduDKCCTOw14EP3090AAAABccqEO1NwBIwjqIXG67nnq5Lny36JapfkfY0Akj/DNvvzpl2wylZrVDQYqX4pGT5Z19xt+kVZovCDSQR9dmS2b</Value>
+            <Value xsi:type="xsd:string">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA8y/KrzfDr0yGAgDEASWkjQAAAAAYAAAARABXACAAQgBhAG4AIABIAGEAbgBnAAAAEGYAAAABAAAgAAAAiCOTdGV1v+c2ykj8g44OfZt/CrVQJy/C0UwoZ4iq43IAAAAADoAAAAACAAAgAAAAJ2SOImhKo9aJ70myFB8N7MUef8IEUKbc/XnnaZKd5roQAAAAGfpQSHd7zE94Frh8yS0zMkAAAAAhKeS57mQEYTqKZs1CiefJ9Q3MOzbjLDhjawFBfmwXpjoLaTiboxIdEqUYy3s1cmAbPD/BMgyAcLkhObjK2kst</Value>
           </ConfigurationSetting>
           <ConfigurationSetting>
             <Id>DW Ban Hang 1</Id>
@@ -27,7 +27,7 @@
             <Value xsi:type="xsd:string">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAZz6lqQ4okk2IQTbfmlAhJwAAAAAcAAAARABXACAAQgBhAG4AIABIAGEAbgBnACAAMQAAABBmAAAAAQAAIAAAAFAWZIVgY02ug+ptEBeV/WGnmn2LeNNtXJ950O77RWUSAAAAAA6AAAAAAgAAIAAAAJAB/uOrl48RYPbiq2gGXclf3VuIcOcgORM/0msuu2IrEAAAAF1EqOxQr6dXgvlr6lfGJJxAAAAAI8csMQzbjzQAmvQtGlgiApJknFXRWq9KQDkzN7c+nAHOWUpnCpOT1KrWGf8+pPmVSRgwUK/QkpnM5GDH6DheKg==</Value>
           </ConfigurationSetting>
         </UserPasswords>
-        <TargetServer>localhost\SSAS_DW</TargetServer>
+        <TargetServer>TRONGHIEU\SERVER_DW</TargetServer>
         <TargetDatabase>DW_BanHang_SSAS</TargetDatabase>
         <StartObject>
           <ObjectId></ObjectId>

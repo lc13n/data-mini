@@ -1,0 +1,259 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_Kho.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|solutionrelative:DW_BanHang_SSAS\\Cube_Kho.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_Kho_ThoiGian.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|solutionrelative:DW_BanHang_SSAS\\Cube_Kho_ThoiGian.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_Kho_MatHang.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|solutionrelative:DW_BanHang_SSAS\\Cube_Kho_MatHang.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_Kho_CuaHang.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|solutionrelative:DW_BanHang_SSAS\\Cube_Kho_CuaHang.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_Kho_MatHang_ThoiGian.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|solutionrelative:DW_BanHang_SSAS\\Cube_Kho_MatHang_ThoiGian.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_Kho_CuaHang_MatHang.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|solutionrelative:DW_BanHang_SSAS\\Cube_Kho_CuaHang_MatHang.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_Kho_CuaHang_ThoiGian.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|solutionrelative:DW_BanHang_SSAS\\Cube_Kho_CuaHang_ThoiGian.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_BanHang_MatHang.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|solutionrelative:DW_BanHang_SSAS\\Cube_BanHang_MatHang.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_BanHang_KhachHang.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|solutionrelative:DW_BanHang_SSAS\\Cube_BanHang_KhachHang.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_BanHang_ThoiGian.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|solutionrelative:DW_BanHang_SSAS\\Cube_BanHang_ThoiGian.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_BanHang_ThoiGian_MatHang.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|solutionrelative:DW_BanHang_SSAS\\Cube_BanHang_ThoiGian_MatHang.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_BanHang_KhachHang_MatHang.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|solutionrelative:DW_BanHang_SSAS\\Cube_BanHang_KhachHang_MatHang.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_BanHang_ThoiGian_KhachHang.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|solutionrelative:DW_BanHang_SSAS\\Cube_BanHang_ThoiGian_KhachHang.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_BanHang.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|solutionrelative:DW_BanHang_SSAS\\Cube_BanHang.cube||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\DW Ban Hang.dsv||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design",
+      "RelativeMoniker": "D:0:0:{3B9B81F5-E0E7-C710-38D5-0B6CAE6792BB}|DW_BanHang_SSAS\\DW_BanHang_SSAS.dwproj|solutionrelative:DW_BanHang_SSAS\\DW Ban Hang.dsv||{B4191D15-2D32-45F2-906F-E91BBAAA6059}|Design"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Cube_Kho_ThoiGian.cube [Design]",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_Kho_ThoiGian.cube",
+              "RelativeDocumentMoniker": "DW_BanHang_SSAS\\Cube_Kho_ThoiGian.cube",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_Kho_ThoiGian.cube [Design]",
+              "RelativeToolTip": "DW_BanHang_SSAS\\Cube_Kho_ThoiGian.cube [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-20T12:10:51.101Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Cube_Kho_MatHang.cube [Design]",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_Kho_MatHang.cube",
+              "RelativeDocumentMoniker": "DW_BanHang_SSAS\\Cube_Kho_MatHang.cube",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_Kho_MatHang.cube [Design]",
+              "RelativeToolTip": "DW_BanHang_SSAS\\Cube_Kho_MatHang.cube [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-20T12:10:26.464Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Cube_Kho_CuaHang.cube [Design]",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_Kho_CuaHang.cube",
+              "RelativeDocumentMoniker": "DW_BanHang_SSAS\\Cube_Kho_CuaHang.cube",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_Kho_CuaHang.cube [Design]",
+              "RelativeToolTip": "DW_BanHang_SSAS\\Cube_Kho_CuaHang.cube [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-20T12:10:02.476Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Cube_Kho_MatHang_ThoiGian.cube [Design]",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_Kho_MatHang_ThoiGian.cube",
+              "RelativeDocumentMoniker": "DW_BanHang_SSAS\\Cube_Kho_MatHang_ThoiGian.cube",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_Kho_MatHang_ThoiGian.cube [Design]",
+              "RelativeToolTip": "DW_BanHang_SSAS\\Cube_Kho_MatHang_ThoiGian.cube [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-20T12:09:31.829Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Cube_Kho_CuaHang_MatHang.cube [Design]",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_Kho_CuaHang_MatHang.cube",
+              "RelativeDocumentMoniker": "DW_BanHang_SSAS\\Cube_Kho_CuaHang_MatHang.cube",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_Kho_CuaHang_MatHang.cube [Design]",
+              "RelativeToolTip": "DW_BanHang_SSAS\\Cube_Kho_CuaHang_MatHang.cube [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-20T12:08:49.92Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Cube_Kho.cube [Design]",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_Kho.cube",
+              "RelativeDocumentMoniker": "DW_BanHang_SSAS\\Cube_Kho.cube",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_Kho.cube [Design]",
+              "RelativeToolTip": "DW_BanHang_SSAS\\Cube_Kho.cube [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-20T11:27:44.844Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Cube_Kho_CuaHang_ThoiGian.cube [Design]",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_Kho_CuaHang_ThoiGian.cube",
+              "RelativeDocumentMoniker": "DW_BanHang_SSAS\\Cube_Kho_CuaHang_ThoiGian.cube",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_Kho_CuaHang_ThoiGian.cube [Design]",
+              "RelativeToolTip": "DW_BanHang_SSAS\\Cube_Kho_CuaHang_ThoiGian.cube [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-20T12:08:14.63Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Cube_BanHang_MatHang.cube [Design]",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_BanHang_MatHang.cube",
+              "RelativeDocumentMoniker": "DW_BanHang_SSAS\\Cube_BanHang_MatHang.cube",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_BanHang_MatHang.cube [Design]",
+              "RelativeToolTip": "DW_BanHang_SSAS\\Cube_BanHang_MatHang.cube [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-20T12:06:59.186Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Cube_BanHang_KhachHang.cube [Design]",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_BanHang_KhachHang.cube",
+              "RelativeDocumentMoniker": "DW_BanHang_SSAS\\Cube_BanHang_KhachHang.cube",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_BanHang_KhachHang.cube [Design]",
+              "RelativeToolTip": "DW_BanHang_SSAS\\Cube_BanHang_KhachHang.cube [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-20T12:06:30.776Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Cube_BanHang_ThoiGian.cube [Design]",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_BanHang_ThoiGian.cube",
+              "RelativeDocumentMoniker": "DW_BanHang_SSAS\\Cube_BanHang_ThoiGian.cube",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_BanHang_ThoiGian.cube [Design]",
+              "RelativeToolTip": "DW_BanHang_SSAS\\Cube_BanHang_ThoiGian.cube [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-20T12:05:40.601Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Cube_BanHang_ThoiGian_MatHang.cube [Design]",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_BanHang_ThoiGian_MatHang.cube",
+              "RelativeDocumentMoniker": "DW_BanHang_SSAS\\Cube_BanHang_ThoiGian_MatHang.cube",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_BanHang_ThoiGian_MatHang.cube [Design]",
+              "RelativeToolTip": "DW_BanHang_SSAS\\Cube_BanHang_ThoiGian_MatHang.cube [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-20T12:05:19.305Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Cube_BanHang_KhachHang_MatHang.cube [Design]",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_BanHang_KhachHang_MatHang.cube",
+              "RelativeDocumentMoniker": "DW_BanHang_SSAS\\Cube_BanHang_KhachHang_MatHang.cube",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_BanHang_KhachHang_MatHang.cube [Design]",
+              "RelativeToolTip": "DW_BanHang_SSAS\\Cube_BanHang_KhachHang_MatHang.cube [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-20T12:04:17.888Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Cube_BanHang_ThoiGian_KhachHang.cube [Design]",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_BanHang_ThoiGian_KhachHang.cube",
+              "RelativeDocumentMoniker": "DW_BanHang_SSAS\\Cube_BanHang_ThoiGian_KhachHang.cube",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_BanHang_ThoiGian_KhachHang.cube [Design]",
+              "RelativeToolTip": "DW_BanHang_SSAS\\Cube_BanHang_ThoiGian_KhachHang.cube [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-20T12:03:39.651Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Cube_BanHang.cube [Design]",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_BanHang.cube",
+              "RelativeDocumentMoniker": "DW_BanHang_SSAS\\Cube_BanHang.cube",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\Cube_BanHang.cube [Design]",
+              "RelativeToolTip": "DW_BanHang_SSAS\\Cube_BanHang.cube [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-20T11:28:12.664Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "DW Ban Hang.dsv [Design]",
+              "DocumentMoniker": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\DW Ban Hang.dsv",
+              "RelativeDocumentMoniker": "DW_BanHang_SSAS\\DW Ban Hang.dsv",
+              "ToolTip": "C:\\Users\\LENOVO LEGION\\Downloads\\data-mini\\data-mini\\btl\\SSAS\\DW_BanHang_SSAS\\DW_BanHang_SSAS\\DW Ban Hang.dsv [Design]",
+              "RelativeToolTip": "DW_BanHang_SSAS\\DW Ban Hang.dsv [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-20T11:27:17.686Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

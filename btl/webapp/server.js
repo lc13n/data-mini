@@ -7,21 +7,25 @@
  *                                             (DrillDown, RollUp, Slice, Dice, Pivot)
  */
 
+require('dotenv').config();
 const express = require('express');
 const sql     = require('mssql');
 const path    = require('path');
 
 // ─── SSAS / MDX Connection (node-adodb → MSOLAP) ────────────────────────────
 let ssasConn;
+const SSAS_SERVER = process.env.SSAS_SERVER || 'localhost\\SSAS_DW';
+const SSAS_CATALOG = process.env.SSAS_CATALOG || 'DW_BanHang_SSAS';
+
 try {
   const ADODB = require('node-adodb');
   ssasConn = ADODB.open(
     'Provider=MSOLAP;'               +
-    'Data Source=localhost\\SSAS_DW;' +
-    'Initial Catalog=DW_BanHang_SSAS;' +
+    `Data Source=${SSAS_SERVER};`    +
+    `Initial Catalog=${SSAS_CATALOG};` +
     'Integrated Security=SSPI;'
   );
-  console.log('✅ SSAS connection initialized → DW_BanHang_SSAS @ localhost\\SSAS_DW');
+  console.log(`✅ SSAS connection initialized → ${SSAS_CATALOG} @ ${SSAS_SERVER}`);
 } catch (e) {
   console.warn('⚠️  node-adodb chưa cài. Chạy: npm install node-adodb');
 }
@@ -30,18 +34,23 @@ const app  = express();
 const PORT = 3000;
 
 // ─── SQL Server Config (cho 9 query nghiệp vụ + filter) ─────────────────────
+const DB_OPTIONS = {
+  trustServerCertificate: true,
+  encrypt:                false,
+  enableArithAbort:       true,
+};
+
+if (process.env.DB_INSTANCE) {
+  DB_OPTIONS.instanceName = process.env.DB_INSTANCE;
+}
+
 const DB_CONFIG = {
   server:   process.env.DB_SERVER   || 'localhost',
   port:     process.env.DB_PORT     ? parseInt(process.env.DB_PORT) : 1433,
   database: process.env.DB_NAME     || 'DW_BanHang',
   user:     process.env.DB_USER     || 'sa',
   password: process.env.DB_PASSWORD || '123456',
-  options: {
-    instanceName:           process.env.DB_INSTANCE || 'SQLEXPRESS',
-    trustServerCertificate: true,
-    encrypt:                false,
-    enableArithAbort:       true,
-  },
+  options:  DB_OPTIONS,
   pool: { max: 10, min: 0, idleTimeoutMillis: 30000 },
 };
 
@@ -502,8 +511,8 @@ app.get('*', (req, res) => {
 // ─── Start Server ─────────────────────────────────────────────────────────────
 app.listen(PORT, async () => {
   console.log(`\n🚀 DW OLAP App đang chạy tại http://localhost:${PORT}`);
-  console.log(`📊 SQL Server : ${DB_CONFIG.server}\\${DB_CONFIG.options.instanceName} → ${DB_CONFIG.database}`);
-  console.log(`🔷 SSAS (MDX) : localhost\\SSAS_DW → DW_BanHang_SSAS\n`);
+  console.log(`📊 SQL Server : ${DB_CONFIG.server}${DB_CONFIG.options.instanceName ? '\\' + DB_CONFIG.options.instanceName : ''} → ${DB_CONFIG.database}`);
+  console.log(`🔷 SSAS (MDX) : ${SSAS_SERVER} → ${SSAS_CATALOG}\n`);
   try { await getPool(); } catch (e) {
     console.error('⚠️  Lỗi kết nối DB:', e.message);
   }
